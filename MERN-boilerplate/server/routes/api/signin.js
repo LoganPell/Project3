@@ -143,9 +143,9 @@ module.exports = (app) => {
         });
       }
 
-      const userSession = new userSession();
-      userSession.userId = users._id;
-      userSession.save((err, doc) => {
+      const newUserSession = new userSession();
+      newUserSession.userId = users._id;
+      newUserSession.save((err, doc) => {
         if (err) {
           return res.send({
             success: false,
