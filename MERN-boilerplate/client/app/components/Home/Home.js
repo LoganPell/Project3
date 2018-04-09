@@ -32,6 +32,7 @@ class Home extends Component {
 
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -181,6 +182,35 @@ class Home extends Component {
       });
   }
 
+  logout() {
+    this.setState({
+      isLoading: true,
+    })
+    const obj =  getFromStorage('the_main_app');
+    if (obj && obj.token) {
+      const { token } = obj;
+      //verify token
+      fetch('/api/account/logout?token=' + token)
+        .then(res => res.json())
+        .then(json => {
+          if (json.success) {
+            this.setState({
+              token: '',
+              isLoading: false
+            });
+          } else {
+            this.setState({
+              isLoading: false,
+            });
+          }
+        });
+    } else {
+      this.setState({
+        isLoading: false,
+      });
+    }
+  }
+
   render() {
     const {
       isLoading,
@@ -263,6 +293,7 @@ class Home extends Component {
     return (
       <div>
         <p>Account</p>
+        <button onClick={this.logout}>Logout</button>
       </div>
     );
   }
