@@ -1,3 +1,13 @@
 #sidebar {
-	color: red;
+	color: #eee;
+	height: 500px;
+	border: 1px solid #222;
+	background-color: teal;
+}
+
+#main {
+	color: #222;
+	height: 500px;
+	border: 1px solid #222;
+	background-color: #E9967A;
 }
