@@ -1,6 +1,7 @@
 import React from 'react';
 
 const DetailedView = (props) => (
+
 <div>
 	<p>Detailed View Component</p>
 
@@ -9,15 +10,15 @@ const DetailedView = (props) => (
 			<div id="actionForm" className="z-depth-2">
 				<p id="sideTitle" className="center-align">Side Area</p>
 
-			  <div class="input-field col s12 ">
-			    <select>
-			      <optgroup label="team 2">
-			        <option value="3">Option 3</option>
-			        <option value="4">Option 4</option>
-			      </optgroup>
-			    </select>
-			    <label>Type</label>
-			  </div>
+			    <div class="input-field col s12">
+				    <select>
+				      <option value="" disabled selected>Choose your option</option>
+				      <option value="1">Option 1</option>
+				      <option value="2">Option 2</option>
+				      <option value="3">Option 3</option>
+				    </select>
+				    <label>Materialize Select</label>
+				  </div>
 
 	      <div className="input-field col s12 formPut">
 	          <input placeholder="Placeholder" id="first_name" type="text" className="validate"/>
