@@ -1,13 +1,19 @@
 #sidebar {
-	height: 550px;
+	height: 300px;
+	width: 300px;
 	border: 1px solid #222;
+	display: inline-block;
+	position: fixed;
 }
 
 #main {
 	color: #222;
-	height: 550px;
+	height: 2000px;
+	width: 600px;
 	border: 1px solid #222;
 	background-color: #E9967A;
+	display: inline-block;
+	margin-left: 500px;
 }
 
 #actionForm {
@@ -15,7 +21,6 @@
 	height: 95%;
 	width: 95%;
 	background-color: #DCDCDC;
-
 }
 
 .formSelect {
