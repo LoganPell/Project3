@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SideMenu from "../SideMenu/SideMenu";
 
 
 class DetailedView extends React.Component {
@@ -6,7 +7,7 @@ class DetailedView extends React.Component {
     super(props);
 
     this.state = {
-      active: null
+      active: 0
     }
 
     this.toggle = this.toggle.bind(this);
@@ -24,8 +25,6 @@ class DetailedView extends React.Component {
     return "formSelect";
   }
 
-
-
 	render(){
 		return (
 			<div>
@@ -39,12 +38,7 @@ class DetailedView extends React.Component {
 							</ul>
 						</div>
 						<div id="sideForm">
-							<form>
-							  <label>
-							    Name:
-							    <input className="myInput" type="text" name="name"/>
-							  </label>
-							</form>
+							<SideMenu formIndex={this.state.active}/>
 						</div>
 					</div>
 

@@ -14,6 +14,7 @@ import Home from './components/Home/Home';
 import HelloWorld from './components/HelloWorld/HelloWorld';
 import DetailedView from "./components/DetailedView/DetailedView";
 import Dashboard from "./components/Dashboard/Dashboard";
+import SideMenu from "./components/SideMenu/SideMenu";
 
 import './styles/styles.scss';
 
