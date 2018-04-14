@@ -24,6 +24,18 @@ class DetailedView extends React.Component {
     return "formSelect";
   }
 
+  componentDidMount() {
+  	var options = {autoClose: true};
+  	console.log("Detailed View Mounted")
+  	var elem = document.querySelector('.datepicker');
+  	var instance = M.Datepicker.init(elem, options);
+
+  	console.log(instance);
+  }
+
+  openDatePicker(){
+
+  }
 
 
 	render(){
@@ -40,10 +52,16 @@ class DetailedView extends React.Component {
 						</div>
 						<div id="sideForm">
 							<form>
-							  <label>
-							    Name:
-							    <input className="myInput" type="text" name="name"/>
-							  </label>
+							  <div className="row">
+				        	<div className="input-field col s12">
+					        	<input id="password" type="text" className="validate"/>
+					          <label for="password">Yoooooo</label>
+					        </div>
+					        <div className="input-field col s12">
+					        	<input id="datepicker" type="text" className="datepicker"/>
+					          <label for="datepicker">Date Picker</label>
+					        </div>
+				      	</div>
 							</form>
 						</div>
 					</div>
