@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SideMenu from "../SideMenu/SideMenu";
 
 
 class DetailedView extends React.Component {
@@ -6,7 +7,7 @@ class DetailedView extends React.Component {
     super(props);
 
     this.state = {
-      active: null
+      active: 0
     }
 
     this.toggle = this.toggle.bind(this);
@@ -24,20 +25,6 @@ class DetailedView extends React.Component {
     return "formSelect";
   }
 
-  componentDidMount() {
-  	var options = {autoClose: true};
-  	console.log("Detailed View Mounted")
-  	var elem = document.querySelector('.datepicker');
-  	var instance = M.Datepicker.init(elem, options);
-
-  	console.log(instance);
-  }
-
-  openDatePicker(){
-
-  }
-
-
 	render(){
 		return (
 			<div>
@@ -51,18 +38,7 @@ class DetailedView extends React.Component {
 							</ul>
 						</div>
 						<div id="sideForm">
-							<form>
-							  <div className="row">
-				        	<div className="input-field col s12">
-					        	<input id="password" type="text" className="validate"/>
-					          <label for="password">Yoooooo</label>
-					        </div>
-					        <div className="input-field col s12">
-					        	<input id="datepicker" type="text" className="datepicker"/>
-					          <label for="datepicker">Date Picker</label>
-					        </div>
-				      	</div>
-							</form>
+							<SideMenu formIndex={this.state.active}/>
 						</div>
 					</div>
 
