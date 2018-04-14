@@ -60,6 +60,8 @@ class Header extends Component{
 				<header>
 			    		<nav>
 				      		<Link to="/">Hmmm</Link>
+				      		<Link to="/Dashboard">Dashboard</Link>
+				      		<Link to="/Detailed">Detailed View</Link>
 				      		<button onClick={this.logout}>Logout</button>
 			    		</nav>
 				</header>
