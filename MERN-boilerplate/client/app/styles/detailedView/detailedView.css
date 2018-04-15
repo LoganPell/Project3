@@ -1,42 +1,53 @@
+/*Main*/
 #sidebar {
-	height: 300px;
+	height: 390px;
 	width: 300px;
 	border: 1px solid #222;
 	display: inline-block;
 	position: fixed;
+	margin-left: 60px;
+	margin-top: 20px;
+	background: grey;
 }
 
+#sidebarSelect {
+	margin: 5px 
+}
+
+/*Form Select toggles styles of sidebar buttons*/
+.formSelect {
+	display: inline-block;
+	margin: 0px 8px;
+	cursor: pointer;
+}
+
+.formSelectActive {
+	display: inline-block;
+	margin: 0px 8px;
+	color: red;
+	border-bottom: solid 2px red;
+	cursor: pointer;
+}
+
+#sideForm {
+	margin: 0 auto;
+	width: 94%;
+}
+
+.sideSubmit {
+	margin-top: 15px;
+	width: 100%;
+}
+
+
+/*Main*/
 #main {
 	color: #222;
 	height: 2000px;
-	width: 600px;
+	width: 900px;
 	border: 1px solid #222;
 	background-color: #E9967A;
 	display: inline-block;
-	margin-left: 500px;
+	margin-left: 400px;
 }
 
-#actionForm {
-	margin-top: 10px;
-	height: 95%;
-	width: 95%;
-	background-color: #DCDCDC;
-}
-
-.formSelect {
-	display: inline-block;
-	margin: 0px 1px;
-}
-
-.selectRow {
-	margin: 0px;
-}
-
-#sideTitle {
-	margin: 4px;
-}
-
-.formPut {
-	margin-top: 30px;
-	margin-bottom: 0px;
-}

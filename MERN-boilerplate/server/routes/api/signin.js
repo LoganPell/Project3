@@ -82,12 +82,12 @@ module.exports = (app) => {
       newUser.password = newUser.generateHash(password);
       newUser.save((err, user) => {
         if (err) {
-          res.end({
+          res.send({
             success: false,
             message: 'Error: Server error'
           });
         }
-        res.end({
+        res.send({
           success: true,
           message: 'Signed up!'
         });
