@@ -1,24 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import DashCard from "./DashCard.js";
+import cards from "./cards.json";
 
-const Dashboard = React.createClass({
-	render: function() {
-		return (
+class Dashboard extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			cards
+		}
+	}
+	render(){
+		return(
 			<div>
-				<div id="card1">
-					<h1></h1>
-				</div>
-
-				<div id="card2">
-					<h1></h1>
-				</div>
-
-				<div id="card3">
-					<h1></h1>
+				<div className="row">
+					{this.state.cards.map(card =>(
+						<DashCard
+							id={card.id}
+							key={card.id}
+							name={card.name}
+							image={card.image}
+							icon={card.icon}
+						/>
+					))}
 				</div>
 			</div>
 		);
 	}
-});
+} 
+
 
 export default Dashboard;

@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"name": "Income",
+		"image": "/assets/img/wallet.jpg", 
+		"icon": "/assets/img/income.svg"
+	},
+	{
+		"id": 2,
+		"name": "Bills",
+		"image": "/assets/img/bills.jpg", 
+		"icon": "/assets/img/bills.svg"
+	}
+]
