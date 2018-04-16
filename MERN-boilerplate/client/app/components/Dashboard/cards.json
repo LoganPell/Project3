@@ -10,5 +10,11 @@
 		"name": "Bills",
 		"image": "/assets/img/bills.jpg", 
 		"icon": "/assets/img/bills.svg"
+	},
+	{
+		"id": 3,
+		"name": "Goals",
+		"image": "/assets/img/goals.jpg", 
+		"icon": "/assets/img/bills.svg"
 	}
 ]
