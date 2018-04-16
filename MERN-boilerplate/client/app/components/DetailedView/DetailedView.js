@@ -10,24 +10,29 @@ class DetailedView extends React.Component {
 
     this.state = {
       active: 0,
+      activeText: "Dough",
       buttonText: "Add Dough",
       token: null,
-      isLoading: null
+      isLoading: null,
+      postMessage: null,
+      userData: [],
     }
 
+    //binds
     this.toggle = this.toggle.bind(this);
     this.activeItem = this.activeItem.bind(this);
     this.postForm = this.postForm.bind(this);
+    this.getUserData = this.getUserData.bind(this);
   }
 
 
 	toggle(position) {
     if (position === 0){
-      this.setState({active : position, buttonText:"Add Dough"})
+      this.setState({active: position, activeText : "Dough", buttonText:"Add Dough"})
     } else if (position === 1) {
-      this.setState({active : position, buttonText: "Add Bill"})
+      this.setState({active: position, activeText : "Bill", buttonText: "Add Bill"})
     } else if (position === 2) {
-      this.setState({active : position, buttonText: "Add Goal"})
+      this.setState({active: position, activeText : "Goal", buttonText: "Add Goal"})
     }
   }
   
@@ -40,71 +45,70 @@ class DetailedView extends React.Component {
   }
 
   componentDidMount() {
+    //gets user token
     const obj =  getFromStorage('the_main_app');
-    if (obj && obj.token) {
-      const { token } = obj;
-      //verify token
-      fetch('/api/account/verify?token=' + token)
-        .then(res => res.json())
-        .then(json => {
-          if (json.success) {
-            this.setState({
-              token,
-              isLoading: false
-            });
-            // console.log(this.state.token)
-          } else {
-            this.setState({
-              isLoading: false,
-            });
-          }
-        });
-    } else {
-      this.setState({
-        isLoading: false,
-      });
-    }
+    const token = obj.token;
+    //gets user data from database
+    this.getUserData(token);
+
+    this.setState({"token": token})
   }
 
+  //adds new entry to database from the data in the sidebar
   postForm() {
-    console.log(this.state.token)
-    console.log($(".formType").val())
-    console.log($(".formAmount").val())
-    console.log($(".formDatepicker").val())
-    console.log($(".formRecurrance").val())
-  }
-  //   //post request to backend
-  //   fetch('/api/account/signup', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       firstName: signUpFirstName,
-  //       lastName: signUpLastName,
-  //       email: signUpEmail,
-  //       password: signUpPassword
-  //     }),
-  //   }).then(res => res.json())
-  //     .then(json => {
-  //       if (json.success) {
-  //         this.setState({
-  //             signUpError: json.message,
-  //             isLoading: false,
-  //             signUpEmail: '',
-  //             signUpPassword: '',
-  //             signUpFirstName: '',
-  //             signUpLastName: ''
-  //         });
-  //       } else {
-  //         this.setState({
-  //             signUpError: json.message,
-  //             isLoading: false,
-  //         });
-  //       }
-  //     });
+    const dataTypeValue = this.state.active;
+    const dataRecurranceValue = $(".formRecurrance").val();
+    const userValue = this.state.token;
+    const dataDescValue = $(".formDesc").val();
+    const dataAmountValue = $(".formAmount").val();
+    const dataDateValue = $(".formDatepicker").val();
+    
+    //post request to backend
+    fetch('/api/data/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userID: userValue,
+        dataType: dataTypeValue,
+        dataDesc: dataDescValue,
+        dataAmount: dataAmountValue,
+        dataDate: dataDateValue,
+        dataReccurance: dataRecurranceValue 
+      }),
+    }).then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.setState({
+              postMessage: json.message
+          });
 
-  // }
+          this.getUserData(userValue);
+        } else {
+          this.setState({
+              postMessage: json.message
+          });
+        }
+      });
+  }
+
+  //gets user data and adds to state - can see in console right now
+  getUserData(token) {
+    const obj =  getFromStorage('the_main_app')
+
+    fetch('/api/data/all?token=' + token)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.setState({userData: json.data})
+          console.log(this.state.userData)
+        } else {
+          console.log("error")
+        }
+    })
+  } 
+  
 
 	render(){
 		return (
@@ -125,8 +129,8 @@ class DetailedView extends React.Component {
 					</div>
 
 					<div id="main" className="">
-						<h4>$500.00</h4>
-						<p>Main Content Area</p>
+						<div>User Data</div>
+            <div></div>
 					</div>
 				</div>
 			</div>

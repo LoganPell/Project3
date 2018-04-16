@@ -23,10 +23,10 @@ initializeInputs() {
 
   componentDidUpdate(){
   	//clears form
-  	$(".formType").val("");
+  	$(".formDesc").val("");
   	$(".formAmount").val("");
  		$(".formDatepicker").val("");
- 		$(".formRecurrance").val(1);
+ 		$(".formRecurrance").val("One Time");
  		$(".formLabel").removeClass("active")
  		this.initializeInputs();
   }
@@ -35,19 +35,12 @@ initializeInputs() {
   	
   }
 
-  // getValues(){
-  // 	console.log($(".formType").val())
-  // 	console.log($(".formAmount").val())
- 	// 	console.log($(".formDatepicker").val())
- 	// 	console.log($(".formRecurrance").val())
-  // }
-
 	render(){
 		if (this.props.activeIndex === 0) {
 			return (
 			<div>
 					<div className="input-field">
-			      	<input type="text" className="value formType"/>
+			      	<input type="text" className="value formDesc"/>
 			        <label className="formLabel">Source</label>
 			    </div>
 
@@ -65,9 +58,9 @@ initializeInputs() {
 		 			<div className="input-field">
 				    <select className="formRecurrance">
 				      <option value="" disabled>Reccurance</option>
-				      <option value="1">One Time</option>
-				      <option value="2">Weekly</option>
-				      <option value="3">Monthly</option>
+				      <option value="One Time">One Time</option>
+				      <option value="Weekly">Weekly</option>
+				      <option value="Monthy">Monthly</option>
 				    </select>
 				    <label>Reccurance</label>
 
@@ -79,7 +72,7 @@ initializeInputs() {
 			return (
 			<div>
 					<div className="input-field">
-			      	<input type="text" className="value formType"/>
+			      	<input type="text" className="value formDesc"/>
 			        <label className="formLabel">Bill</label>
 			    </div>
 
@@ -97,9 +90,9 @@ initializeInputs() {
 		 			<div className="input-field">
 				    <select className="formRecurrance">
 				      <option value="" disabled>Reccurance</option>
-				      <option value="1">One Time</option>
-				      <option value="2">Weekly</option>
-				      <option value="3">Monthly</option>
+				      <option value="One Time">One Time</option>
+				      <option value="Weekly">Weekly</option>
+				      <option value="Monthly">Monthly</option>
 				    </select>
 				    <label>Reccurance</label>
 
@@ -110,7 +103,7 @@ initializeInputs() {
 			return (
 			<div>
 					<div className="input-field">
-			      	<input type="text" className="value formType"/>
+			      	<input type="text" className="value formDesc"/>
 			        <label className="formLabel">Goal</label>
 			    </div>
 
