@@ -1,18 +1,18 @@
 [
 	{
-		"id": 1,
+		"id": 0,
 		"name": "Income",
 		"image": "/assets/img/wallet.jpg", 
 		"icon": "/assets/img/income.svg"
 	},
 	{
-		"id": 2,
+		"id": 1,
 		"name": "Bills",
 		"image": "/assets/img/bills.jpg", 
 		"icon": "/assets/img/bills.svg"
 	},
 	{
-		"id": 3,
+		"id": 2,
 		"name": "Goals",
 		"image": "/assets/img/goals.jpg", 
 		"icon": "/assets/img/bills.svg"
