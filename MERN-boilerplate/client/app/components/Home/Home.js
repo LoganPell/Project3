@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import Header from '../Header/Header';
+import Navbar from '../Navbar/Navbar';
+import Dashboard from "../Dashboard/Dashboard";
 
 import {
   getFromStorage,
@@ -212,6 +215,7 @@ class Home extends Component {
   }
 
   render() {
+    
     const {
       isLoading,
       token,
@@ -231,6 +235,7 @@ class Home extends Component {
     if (!token) {
       return (
         <div>
+        <Header/>
           <div>
             {
               (signInError) ? (
@@ -292,6 +297,8 @@ class Home extends Component {
     }
     return (
       <div>
+        <Header/>
+        <Dashboard/>
         <p>Account</p>
         <button onClick={this.logout}>Logout</button>
       </div>

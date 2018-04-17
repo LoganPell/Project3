@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const DashCard = props => (
 	<div id="card{props.id}" className="col s10 m4 l4 offset-s1">
@@ -12,10 +13,12 @@ const DashCard = props => (
 				<p>Other Info here!!</p>
 			</div>
 			<div className="card-action">
-				<a className="waves-effect waves-teal btn-flat green accent-2 white-text" id="incomeBtn" href="#">
-					<i className="material-icons left">more_horiz</i>
-					More
-				</a>
+				<Link to="/Detailed">
+					<a className="waves-effect waves-teal btn-flat green accent-2 white-text" id="incomeBtn">
+						<i className="material-icons left">more_horiz</i>
+						More
+					</a>
+				</Link>
 			</div>
 		</div>
 	</div>
