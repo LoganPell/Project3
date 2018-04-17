@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 // import SideMenu from "../SideMenu/SideMenu";
 import SideBar from "../SideBar/SideBar";
+import Chart1 from "../Chart1/Chart1";
+import Chart2 from "../Chart2/Chart2";
+import Chart3 from "../Chart3/Chart3";
+import DoughTips from "../DoughTips/DoughTips";
 import 'whatwg-fetch';
 import {getFromStorage,setInStorage} from '../../utils/storage'
+
+
 
 class DetailedView extends React.Component {
 	constructor(props) {
@@ -112,28 +118,33 @@ class DetailedView extends React.Component {
 
 	render(){
 		return (
-			<div>
-				<div className="row">
-					<div id="sidebar">
-						<div>
-							<ul id="sidebarSelect" className="center-align">
-								<li className={this.activeItem(0)} onClick={() => {this.toggle(0)}}>Add Dough</li>
-       					<li className={this.activeItem(1)} onClick={() => {this.toggle(1)}}>Add Bill</li>
-       					<li className={this.activeItem(2)} onClick={() => {this.toggle(2)}}>Add Goal</li>
-							</ul>
-						</div>
-						<div id="sideForm">
-							<SideBar activeIndex={this.state.active}/>
-              <button onClick={this.postForm} className="btn waves-effect waves-light sideSubmit">{this.state.buttonText}</button>
-						</div>
-					</div>
-
+			<div id="DetailedContainer">
+        <div id="sideContainer">
+  				<div id="sidebar">
+  						<div>
+  							<ul id="sidebarSelect" className="center-align">
+  								<li className={this.activeItem(0)} onClick={() => {this.toggle(0)}}>Add Dough</li>
+         					<li className={this.activeItem(1)} onClick={() => {this.toggle(1)}}>Add Bill</li>
+         					<li className={this.activeItem(2)} onClick={() => {this.toggle(2)}}>Add Goal</li>
+  							</ul>
+  						</div>
+  						<div id="sideForm">
+  							<SideBar activeIndex={this.state.active}/>
+                <button onClick={this.postForm} className="btn waves-effect waves-light sideSubmit">{this.state.buttonText}</button>
+  						</div>
+          </div>
+          <div>
+            <DoughTips />
+              </div>
+  				</div>
+  
 					<div id="main" className="">
 						<div>User Data</div>
-            <div></div>
+            <Chart1 />
+            <Chart2 />
+            <Chart3 />
 					</div>
-				</div>
-			</div>
+		  </div>
 	)};
 }
 export default DetailedView;

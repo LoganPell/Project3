@@ -1,13 +1,20 @@
+/*Detailed Container*/
+#DetailedContainer{
+	display: flex;
+  flex-wrap: wrap;
+}
+
+#sideContainer {
+	flex: 0;
+}
+
 /*Main*/
 #sidebar {
 	height: 390px;
 	width: 300px;
 	border: 1px solid #222;
-	display: inline-block;
-	position: fixed;
 	margin-left: 60px;
 	margin-top: 20px;
-	background: grey;
 }
 
 #sidebarSelect {
@@ -24,8 +31,8 @@
 .formSelectActive {
 	display: inline-block;
 	margin: 0px 8px;
-	color: red;
-	border-bottom: solid 2px red;
+	color: #009688;
+	border-bottom: solid 2px #009688;
 	cursor: pointer;
 }
 
@@ -44,10 +51,12 @@
 #main {
 	color: #222;
 	height: 2000px;
-	width: 900px;
+	max-width: 800px;
+	min-width: 800px;
 	border: 1px solid #222;
-	background-color: #E9967A;
 	display: inline-block;
-	margin-left: 400px;
+	margin: 20px 30px;
+	overflow: none;
+	flex: 1
 }
 
