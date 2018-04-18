@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
+// import Navbar from '../Navbar/Navbar';
 import Dashboard from "../Dashboard/Dashboard";
 
 import {
@@ -215,7 +215,7 @@ class Home extends Component {
   }
 
   render() {
-    
+  // return <Header />
     const {
       isLoading,
       token,
@@ -235,7 +235,9 @@ class Home extends Component {
     if (!token) {
       return (
         <div>
+        <div>
         <Header/>
+        </div>
           <div>
             {
               (signInError) ? (
@@ -303,7 +305,7 @@ class Home extends Component {
         <button onClick={this.logout}>Logout</button>
       </div>
     );
-  }
+ }
 }
 
 export default Home;
