@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import Header from '../Header/Header';
 // import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
 
 import {
@@ -215,7 +216,6 @@ class Home extends Component {
   }
 
   render() {
-  // return <Header />
     const {
       isLoading,
       token,
@@ -236,8 +236,12 @@ class Home extends Component {
       return (
         <div>
         <div>
-        <Header/>
-        </div>
+          <header>
+              <nav>
+                <Link to="/">Dough Flow</Link>
+              </nav>
+          </header>
+          </div>
           <div>
             {
               (signInError) ? (
@@ -299,13 +303,18 @@ class Home extends Component {
     }
     return (
       <div>
-        <Header/>
+        <header>
+          <nav>
+              <Link to="/">Hmm</Link>
+              <Link to="/Dashboard">Dashboard</Link>
+              <Link to="/Detailed">Detailed View</Link>
+              <button onClick={this.logout}>Logout</button>
+          </nav>
+        </header>
         <Dashboard/>
-        <p>Account</p>
-        <button onClick={this.logout}>Logout</button>
       </div>
     );
- }
+  }
 }
 
 export default Home;

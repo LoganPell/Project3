@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 
 const App = ({children}) => (
 	<Home>
-		<Header />
+		
 
 		<main>
 			{children}

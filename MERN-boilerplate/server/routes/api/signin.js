@@ -155,7 +155,7 @@ module.exports = (app) => {
 
         return res.send({
           success: true,
-          message: 'Valid sign in',
+          message: '',
           token:  doc._id
         });
       });
