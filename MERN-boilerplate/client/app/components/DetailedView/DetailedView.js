@@ -5,6 +5,7 @@ import Chart1 from "../Chart1/Chart1";
 import Chart2 from "../Chart2/Chart2";
 import Chart3 from "../Chart3/Chart3";
 import DoughTips from "../DoughTips/DoughTips";
+import tipBank from "./tips.json"
 import 'whatwg-fetch';
 import {getFromStorage,setInStorage} from '../../utils/storage'
 
@@ -22,6 +23,9 @@ class DetailedView extends React.Component {
       isLoading: null,
       postMessage: null,
       userData: [],
+      doughTips: tipBank,
+      currentTip: "",
+      tipIndex: 0
     }
 
     //binds
@@ -29,6 +33,7 @@ class DetailedView extends React.Component {
     this.activeItem = this.activeItem.bind(this);
     this.postForm = this.postForm.bind(this);
     this.getUserData = this.getUserData.bind(this);
+    this.getDoughTip = this.getDoughTip.bind(this);
   }
 
 
@@ -58,6 +63,7 @@ class DetailedView extends React.Component {
     this.getUserData(token);
 
     this.setState({"token": token})
+    this.setState({currentTip: this.state.doughTips[0]})
   }
 
   //adds new entry to database from the data in the sidebar
@@ -114,6 +120,18 @@ class DetailedView extends React.Component {
         }
     })
   } 
+
+  getDoughTip(){
+   let bankLen = this.state.doughTips.length;
+   let currentIndex = this.state.tipIndex;
+
+   if (currentIndex === bankLen-1){
+    this.setState({tipIndex: 0, currentTip: this.state.doughTips[0]})
+   } else {
+    currentIndex += 1;
+    this.setState({tipIndex: currentIndex, currentTip: this.state.doughTips[currentIndex]})
+   }
+  }
   
 
 	render(){
@@ -134,7 +152,7 @@ class DetailedView extends React.Component {
   						</div>
           </div>
           <div>
-            <DoughTips />
+            <DoughTips tip={this.state.currentTip} newTip={()=>this.getDoughTip()}/>
               </div>
   				</div>
   
