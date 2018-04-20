@@ -1,51 +1,77 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 
-// import {
-//   getFromStorage,
-//   setInStorage
-// } from '../../utils/storage'
+import {
+  getFromStorage,
+  setInStorage
+} from '../../utils/storage'
 
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-// class Header extends Component{
-// 	constructor(props) {
-// 		super(props);
+class Header extends Component{
+	constructor(props) {
+		super(props);
 
-// 		this.state = {
-// 			token: '',
-// 		}
-// 	}
+		this.state = {
+			token: '',
+		}
+	}
 
-// 	render () {
-// 		const {
-// 			token
-// 		} = this.state;
+	componentDidMount() {
+    const obj =  getFromStorage('the_main_app');
+    if (obj && obj.token) {
+      const { token } = obj;
+      //verify token
+      fetch('/api/account/verify?token=' + token)
+        .then(res => res.json())
+        .then(json => {
+          if (json.success) {
+            this.setState({
+              token,
+              isLoading: false
+            });
+          } else {
+            this.setState({
+              isLoading: false,
+            });
+          }
+        });
+    } else {
+      this.setState({
+        isLoading: false,
+      });
+    }
+  }
 
-// 		if (!token) {
-// 			return (
-// 				<header>
-// 		    		<nav>
-// 			      		<Link to="/">Dough Flow</Link>
-// 		    		</nav>
-// 				</header>
-// 			);
-// 		} else if (token) {
-// 			return (
-// 				<header>
-// 			    		<nav>
-// 				      		<Link to="/">Hmmm</Link>
-// 				      		<Link to="/Dashboard">Dashboard</Link>
-// 				      		<Link to="/Detailed">Detailed View</Link>
-// 				      		<button onClick={this.logout}>Logout</button>
-// 			    		</nav>
-// 				</header>
-// 		    );
-// 		}	
-// 	}
-// };
+	render () {
+		const {
+			token
+		} = this.state;
 
-// export default Header;
+		if (!token) {
+			return (
+				<header>
+		    		<nav>
+			      		<Link to="/">Dough Flow</Link>
+		    		</nav>
+				</header>
+			);
+		} else if (token) {
+			return (
+				<header>
+			    		<nav>
+				      		<Link to="/">Hmmm</Link>
+				      		<Link to="/Dashboard" onClick={this.props.headerClick}>Dashboard</Link>
+				      		<Link to="/Detailed" onClick={this.props.headerClick}>Detailed View</Link>
+				      		<button onClick={this.props.logoutFunc}>Logout</button>
+			    		</nav>
+				</header>
+		    );
+		}	
+	}
+};
+
+export default Header;
 
 
 // import React from 'react';

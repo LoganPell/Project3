@@ -66,6 +66,8 @@ class DetailedView extends React.Component {
     this.setState({currentTip: this.state.doughTips[0]})
   }
 
+  
+
   //adds new entry to database from the data in the sidebar
   postForm() {
     const dataTypeValue = this.state.active;

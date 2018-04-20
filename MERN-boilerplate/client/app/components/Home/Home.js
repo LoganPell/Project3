@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 // import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
+import Detailed from "../DetailedView/DetailedView";
 
 import {
   getFromStorage,
@@ -25,6 +26,7 @@ class Home extends Component {
       signUpLastName: '',
       signUpEmail: '',
       signUpPassword: '',
+      currentPage: "/Dashboard"
     };
 
     this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
@@ -37,6 +39,7 @@ class Home extends Component {
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
     this.logout = this.logout.bind(this);
+    this.pageChange = this.pageChange.bind(this);
   }
 
   componentDidMount() {
@@ -215,6 +218,16 @@ class Home extends Component {
     }
   }
 
+  pageChange(event) {
+    let page = event.target.getAttribute("href");
+
+    if (page === "/Dashboard" || page === "/Detailed"){
+      this.setState({currentPage: page})
+    }
+  }
+
+
+
   render() {
     const {
       isLoading,
@@ -232,6 +245,7 @@ class Home extends Component {
     if (isLoading) {
       return (<div><p>Loading...</p></div>)
     }
+
     if (!token) {
       return (
         <div>
@@ -301,19 +315,37 @@ class Home extends Component {
         </div>
       );
     }
-    return (
-      <div>
+
+    {if (this.state.currentPage === "/Dashboard"){
+      return (
+        <div>
         <header>
-          <nav>
-              <Link to="/">Hmm</Link>
-              <Link to="/Dashboard">Dashboard</Link>
-              <Link to="/Detailed">Detailed View</Link>
-              <button onClick={this.logout}>Logout</button>
-          </nav>
+          <Header 
+            logoutFunc={()=> this.logout()}
+            headerClick={(event)=> this.pageChange(event)}
+          />
         </header>
-        <Dashboard/>
-      </div>
-    );
+
+          <Dashboard />
+        </div>
+      )
+    } else if (this.state.currentPage === "/Detailed"){
+      return (
+        <div>
+        <header>
+          <Header 
+            logoutFunc={()=> this.logout()} 
+            headerClick={(event)=> this.pageChange(event)}
+          />
+        </header>
+
+          <Detailed />
+        </div>
+      )
+    }}
+    
+
+
   }
 }
 
