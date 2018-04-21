@@ -10,7 +10,7 @@
 
 /*Main*/
 #sidebar {
-	height: 390px;
+	height: 400px;
 	width: 300px;
 	border: 1px solid #222;
 	margin-left: 60px;
@@ -25,7 +25,7 @@
 /*Form Select toggles styles of sidebar buttons*/
 .formSelect {
 	display: inline-block;
-	margin: 0px 8px;
+	margin: 5px 8px;
 	cursor: pointer;
 }
 
@@ -42,10 +42,24 @@
 	width: 94%;
 }
 
+
 .sideSubmit {
 	margin-top: 15px;
 	width: 100%;
 }
+
+#formMessage11 {
+	margin-top: 3px;
+}
+
+.formGood {
+	color: green;
+}
+
+.formBad {
+	color: red;
+}
+
 
 /*Dough Tips*/
 #doughTips {

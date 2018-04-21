@@ -12,6 +12,7 @@ module.exports = (app) => {
     const {dataDate} = body;
     const {dataReccurance} = body;
 
+
     if (dataType === 0){
       dataType = "dough";
     } else if (dataType === 1){
@@ -29,25 +30,25 @@ module.exports = (app) => {
     if (!userID) {
       return res.send({
         success: false,
-        message: 'Error: need username.'
+        message: 'Error: invalid user.'
       });
     }
     if (!dataDesc) {
       return res.send({
         success: false,
-        message: 'Error: need description.'
+        message: 'Please Fill Out All Fields'
       });
     }
     if (!dataAmount) {
       return res.send({
         success: false,
-        message: 'Error: need description.'
+        message: 'Please Fill Out All Fields'
       });
     }
     if (!dataDate) {
       return res.send({
         success: false,
-        message: 'Error: need description.'
+        message: 'Please Fill Out All Fields'
       });
     }
 

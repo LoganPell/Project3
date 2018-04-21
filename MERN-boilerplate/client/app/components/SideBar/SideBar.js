@@ -6,34 +6,6 @@ class SideBar extends React.Component {
   	super(props);
 	}
 
-initializeInputs() {
- 		var options = {};
-  	var datePicker = document.querySelector('.datepicker');
-  	var datePickInstance = M.Datepicker.init(datePicker,options); 
-
-  	//recurrance select
-  	var recurrance = document.querySelector('select');
-  	var recurranceInstance = M.FormSelect.init(recurrance, options);
-  }
-
- 
-  componentDidMount() {
-  	this.initializeInputs();
-  }
-
-  componentDidUpdate(){
-  	//clears form
-  	$(".formDesc").val("");
-  	$(".formAmount").val("");
- 		$(".formDatepicker").val("");
- 		$(".formRecurrance").val("One Time");
- 		$(".formLabel").removeClass("active")
- 		this.initializeInputs();
-  }
-
-  componentWillUnmount(){
-  	
-  }
 
 	render(){
 		if (this.props.activeIndex === 0) {
@@ -118,6 +90,10 @@ initializeInputs() {
 		      </div>
 			</div>
 		)
+		} else if ((this.props.activeIndex === 3)) { 
+			return (
+				<div>Settings</div>
+			)
 		}
 	}
 }

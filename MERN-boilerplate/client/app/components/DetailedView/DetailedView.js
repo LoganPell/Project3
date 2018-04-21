@@ -44,7 +44,11 @@ class DetailedView extends React.Component {
       this.setState({active: position, activeText : "Bill", buttonText: "Add Bill"})
     } else if (position === 2) {
       this.setState({active: position, activeText : "Goal", buttonText: "Add Goal"})
+    } else if (position === 3) {
+      this.setState({active: position, activeText : "Settings", buttonText: "Save Settings"})
     }
+
+    this.clearForm();
   }
   
   //sets css class on selected item 
@@ -64,8 +68,13 @@ class DetailedView extends React.Component {
 
     this.setState({"token": token})
     this.setState({currentTip: this.state.doughTips[0]})
+
+    this.initializeInputs();
   }
 
+  componentDidUpdate(){
+    this.initializeInputs();
+  }
   
 
   //adds new entry to database from the data in the sidebar
@@ -94,15 +103,27 @@ class DetailedView extends React.Component {
     }).then(res => res.json())
       .then(json => {
         if (json.success) {
-          this.setState({
-              postMessage: json.message
-          });
-
+          //successfully posted
+      
+          //display message
+          $("#formMessage11").addClass("formGood");
+          $("#formMessage11").removeClass("hide");
+          $("#formMessage11").text("Successfully Added!");
+          //hide message
+          setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formGood");}, 1500);
+          //clear form
+          this.clearForm();
+          //refresh data
           this.getUserData(userValue);
         } else {
-          this.setState({
-              postMessage: json.message
-          });
+          //error
+          
+          //display message
+          $("#formMessage11").addClass("formBad")
+          $("#formMessage11").removeClass("hide");
+          $("#formMessage11").text("Please Fill Out All Fields");
+          //hide message
+          setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formBad");}, 1500);
         }
       });
   }
@@ -134,7 +155,29 @@ class DetailedView extends React.Component {
     this.setState({tipIndex: currentIndex, currentTip: this.state.doughTips[currentIndex]})
    }
   }
-  
+
+  initializeInputs() {
+    var options = {};
+    var datePicker = document.querySelector('.datepicker');
+    var datePickInstance = M.Datepicker.init(datePicker,options); 
+
+    //recurrance select
+    var recurrance = document.querySelector('select');
+    var recurranceInstance = M.FormSelect.init(recurrance, options);
+  }
+
+ 
+
+  clearForm(){
+    //clears form
+    $(".formDesc").val("");
+    $(".formAmount").val("");
+    $(".formDatepicker").val("");
+    $(".formRecurrance").val("One Time");
+    $(".formLabel").removeClass("active")
+    this.initializeInputs();
+  }
+
 
 	render(){
 		return (
@@ -143,14 +186,16 @@ class DetailedView extends React.Component {
   				<div id="sidebar">
   						<div>
   							<ul id="sidebarSelect" className="center-align">
-  								<li className={this.activeItem(0)} onClick={() => {this.toggle(0)}}>Add Dough</li>
-         					<li className={this.activeItem(1)} onClick={() => {this.toggle(1)}}>Add Bill</li>
-         					<li className={this.activeItem(2)} onClick={() => {this.toggle(2)}}>Add Goal</li>
+  								<li className={this.activeItem(0)} onClick={() => {this.toggle(0)}}>Dough</li>
+         					<li className={this.activeItem(1)} onClick={() => {this.toggle(1)}}>Bills</li>
+         					<li className={this.activeItem(2)} onClick={() => {this.toggle(2)}}>Goals</li>
+                  <li className={this.activeItem(3)} onClick={() => {this.toggle(3)}}>Settings</li>
   							</ul>
   						</div>
   						<div id="sideForm">
   							<SideBar activeIndex={this.state.active}/>
                 <button onClick={this.postForm} className="btn waves-effect waves-light sideSubmit">{this.state.buttonText}</button>
+                <div id="formMessage11" className="helper-text center-align hide"></div>
   						</div>
           </div>
           <div>
