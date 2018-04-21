@@ -6,11 +6,24 @@ module.exports = (app) => {
   app.post('/api/data/add', (req, res, next) => {
     const {body} = req;
     const {userID} = body;
-    const {dataType} = body;
+    let {dataType} = body;
     const {dataDesc} = body;
     const {dataAmount} = body;
     const {dataDate} = body;
     const {dataReccurance} = body;
+
+    if (dataType === 0){
+      dataType = "dough";
+    } else if (dataType === 1){
+      dataType = "bill";
+    } else if (dataType === 2) {
+      dataType = "goal"
+    } else {
+      return res.send({
+        success: false,
+        message: 'Error: invalid dataType.'
+      });
+    }
 
     //making sure all fields are filled out
     if (!userID) {
