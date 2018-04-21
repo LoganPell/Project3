@@ -48,7 +48,7 @@ class DetailedView extends React.Component {
       this.setState({active: position, activeText : "Settings", buttonText: "Save Settings"})
     }
 
-    this.clearForm();
+    console.log(this.state.activeText);
   }
   
   //sets css class on selected item 
@@ -68,23 +68,32 @@ class DetailedView extends React.Component {
 
     this.setState({"token": token})
     this.setState({currentTip: this.state.doughTips[0]})
-
-    this.initializeInputs();
   }
 
-  componentDidUpdate(){
-    this.initializeInputs();
-  }
+
   
 
   //adds new entry to database from the data in the sidebar
   postForm() {
-    const dataTypeValue = this.state.active;
-    const dataRecurranceValue = $(".formRecurrance").val();
+
+  if (this.state.activeText !== "Settings") {
     const userValue = this.state.token;
+    const dataTypeValue = this.state.active;
     const dataDescValue = $(".formDesc").val();
+    let dataRecurranceValue = $(".formRecurrance").val();
     const dataAmountValue = $(".formAmount").val();
     const dataDateValue = $(".formDatepicker").val();
+
+    if (dataRecurranceValue === undefined) {
+      dataRecurranceValue = "One Time"
+    }
+
+    // console.log("user:", userValue)
+    // console.log("type:", dataTypeValue)
+    // console.log("desc:", dataDescValue)
+    // console.log("recur:", dataRecurranceValue)
+    // console.log("amount:", dataAmountValue)
+    // console.log("date:", dataDateValue)
     
     //post request to backend
     fetch('/api/data/add', {
@@ -111,10 +120,14 @@ class DetailedView extends React.Component {
           $("#formMessage11").text("Successfully Added!");
           //hide message
           setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formGood");}, 1500);
-          //clear form
-          this.clearForm();
+         
           //refresh data
           this.getUserData(userValue);
+          //clear inputs
+          $(".formDesc").val("");
+          $(".formAmount").val("");
+          $(".formDatepicker").val("");
+          $(".formLabel").removeClass("active")
         } else {
           //error
           
@@ -126,12 +139,16 @@ class DetailedView extends React.Component {
           setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formBad");}, 1500);
         }
       });
+
+    } else {
+      
+    }
   }
 
   //gets user data and adds to state - can see in console right now
   getUserData(token) {
-    const obj =  getFromStorage('the_main_app')
-
+    // const obj =  getFromStorage('the_main_app')
+    console.log(token);
     fetch('/api/data/all?token=' + token)
       .then(res => res.json())
       .then(json => {
@@ -156,28 +173,6 @@ class DetailedView extends React.Component {
    }
   }
 
-  initializeInputs() {
-    var options = {};
-    var datePicker = document.querySelector('.datepicker');
-    var datePickInstance = M.Datepicker.init(datePicker,options); 
-
-    //recurrance select
-    var recurrance = document.querySelector('select');
-    var recurranceInstance = M.FormSelect.init(recurrance, options);
-  }
-
- 
-
-  clearForm(){
-    //clears form
-    $(".formDesc").val("");
-    $(".formAmount").val("");
-    $(".formDatepicker").val("");
-    $(".formRecurrance").val("One Time");
-    $(".formLabel").removeClass("active")
-    this.initializeInputs();
-  }
-
 
 	render(){
 		return (
@@ -189,7 +184,7 @@ class DetailedView extends React.Component {
   								<li className={this.activeItem(0)} onClick={() => {this.toggle(0)}}>Dough</li>
          					<li className={this.activeItem(1)} onClick={() => {this.toggle(1)}}>Bills</li>
          					<li className={this.activeItem(2)} onClick={() => {this.toggle(2)}}>Goals</li>
-                  <li className={this.activeItem(3)} onClick={() => {this.toggle(3)}}>Settings</li>
+                  <li className={this.activeItem(3)} onClick={() => {this.toggle(3)}}>Add Types</li>
   							</ul>
   						</div>
   						<div id="sideForm">
