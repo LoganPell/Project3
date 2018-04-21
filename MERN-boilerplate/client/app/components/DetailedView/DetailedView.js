@@ -25,7 +25,7 @@ class DetailedView extends React.Component {
       userData: [],
       doughTips: tipBank,
       currentTip: "",
-      tipIndex: 0
+      tipIndex: 0,
     }
 
     //binds
@@ -34,6 +34,7 @@ class DetailedView extends React.Component {
     this.postForm = this.postForm.bind(this);
     this.getUserData = this.getUserData.bind(this);
     this.getDoughTip = this.getDoughTip.bind(this);
+
   }
 
 
@@ -124,10 +125,18 @@ class DetailedView extends React.Component {
           //refresh data
           this.getUserData(userValue);
           //clear inputs
-          $(".formDesc").val("");
-          $(".formAmount").val("");
-          $(".formDatepicker").val("");
-          $(".formLabel").removeClass("active")
+
+          if (dataTypeValue === 0 || dataTypeValue === 1){
+            $(".formAmount").val("");
+            $(".formDatepicker").val("");
+            $(".formLabel").removeClass("active")
+          } else if (dataTypeValue === 2) {
+            $(".formDesc").val("");
+            $(".formAmount").val("");
+            $(".formDatepicker").val("");
+            $(".formLabel").removeClass("active")
+          }
+          
         } else {
           //error
           
@@ -141,9 +150,34 @@ class DetailedView extends React.Component {
       });
 
     } else {
-      
-    }
+      const userValue = this.state.token;
+      const dataSettingsType = $(".formSettingType").val();
+      const dataSettingsDesc = $(".formSettingDesc").val();
+
+      console.log(userValue);
+      console.log(dataSettingsType);
+      console.log(dataSettingsDesc);
+
+      fetch('/api/settings/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userID: userValue,
+        dataType: dataSettingsType,
+        dataDesc: dataSettingsDesc,
+      }),
+    }).then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          console.log("added");
+        }
+
+      });
+    };
   }
+
 
   //gets user data and adds to state - can see in console right now
   getUserData(token) {

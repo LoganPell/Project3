@@ -26,8 +26,8 @@ class FormSettings extends React.Component {
 		    	<div className="input-field">
 				    <select className="formSettingType">
 				      <option value="" disabled>Select an Option</option>
-				      <option value="One Time">Dough Source</option>
-				      <option value="Weekly">Bill Type</option>
+				      <option value="Dough">Dough Source</option>
+				      <option value="Bill">Bill Type</option>
 				    </select>
 				    <label>Dough Source or Bill Type</label>
 				  </div>
