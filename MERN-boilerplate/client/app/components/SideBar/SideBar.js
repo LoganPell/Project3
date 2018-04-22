@@ -12,11 +12,11 @@ class SideBar extends React.Component {
 	render(){
 		if (this.props.activeIndex === 0) {
 			return (
-				<FormDough />
+				<FormDough doughVals={this.props.doughVals}/>
 			)
 		} else if (this.props.activeIndex === 1){
 			return (
-			<FormBill />
+			<FormBill billVals={this.props.billVals}/>
 		)
 		} else if (this.props.activeIndex === 2) {
 			return (

@@ -7,6 +7,21 @@ class FormBill extends React.Component {
 	}
 
 	componentDidMount(){
+		this.dropDownCreate();
+	}
+
+	componentDidUpdate(){
+		this.dropDownCreate();
+	}
+
+	dropDownCreate(){
+		let billList = this.props.billVals;
+		
+		if (billList !== null) {
+			for (let i=0; i <billList.length; i++){
+				$(".formBillType").append("<option value="+billList[i]+">"+billList[i]+"</option>");
+			}
+		}
 		this.initializeInputs();
 	}
 
@@ -31,7 +46,6 @@ class FormBill extends React.Component {
 			    <div className="input-field">
 				    <select className="formDesc formBillType">
 				      <option value="" disabled>Select a Bill Type</option>
-				      <option value="Test">Test</option>
 				    </select>
 				    <label>Bill Type</label>
 				</div>

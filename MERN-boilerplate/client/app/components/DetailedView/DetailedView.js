@@ -26,6 +26,8 @@ class DetailedView extends React.Component {
       doughTips: tipBank,
       currentTip: "",
       tipIndex: 0,
+      doughVals: null,
+      billVals: null
     }
 
     //binds
@@ -33,6 +35,7 @@ class DetailedView extends React.Component {
     this.activeItem = this.activeItem.bind(this);
     this.postForm = this.postForm.bind(this);
     this.getUserData = this.getUserData.bind(this);
+    this.getTypeData = this.getTypeData.bind(this);
     this.getDoughTip = this.getDoughTip.bind(this);
 
   }
@@ -48,8 +51,6 @@ class DetailedView extends React.Component {
     } else if (position === 3) {
       this.setState({active: position, activeText : "Settings", buttonText: "Save Settings"})
     }
-
-    console.log(this.state.activeText);
   }
   
   //sets css class on selected item 
@@ -66,13 +67,10 @@ class DetailedView extends React.Component {
     const token = obj.token;
     //gets user data from database
     this.getUserData(token);
+    this.getTypeData(token);
 
-    this.setState({"token": token})
-    this.setState({currentTip: this.state.doughTips[0]})
+    this.setState({"token": token, currentTip: this.state.doughTips[0]})
   }
-
-
-  
 
   //adds new entry to database from the data in the sidebar
   postForm() {
@@ -88,13 +86,6 @@ class DetailedView extends React.Component {
     if (dataRecurranceValue === undefined) {
       dataRecurranceValue = "One Time"
     }
-
-    // console.log("user:", userValue)
-    // console.log("type:", dataTypeValue)
-    // console.log("desc:", dataDescValue)
-    // console.log("recur:", dataRecurranceValue)
-    // console.log("amount:", dataAmountValue)
-    // console.log("date:", dataDateValue)
     
     //post request to backend
     fetch('/api/data/add', {
@@ -154,10 +145,6 @@ class DetailedView extends React.Component {
       const dataSettingsType = $(".formSettingType").val();
       const dataSettingsDesc = $(".formSettingDesc").val();
 
-      console.log(userValue);
-      console.log(dataSettingsType);
-      console.log(dataSettingsDesc);
-
       fetch('/api/settings/add', {
       method: 'POST',
       headers: {
@@ -171,9 +158,24 @@ class DetailedView extends React.Component {
     }).then(res => res.json())
       .then(json => {
         if (json.success) {
-          console.log("added");
+          this.getTypeData(userValue);
+          //clear 
+          $(".formSettingDesc").val("");
+          $(".formLabel").removeClass("active")
+          //display message
+          $("#formMessage11").addClass("formGood");
+          $("#formMessage11").removeClass("hide");
+          $("#formMessage11").text("Successfully Added!");
+          //hide message
+          setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formGood");}, 1500);
+        } else {
+        //display message
+          $("#formMessage11").addClass("formBad")
+          $("#formMessage11").removeClass("hide");
+          $("#formMessage11").text("Please Fill Out All Fields");
+          //hide message
+          setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formBad");}, 1500);
         }
-
       });
     };
   }
@@ -181,14 +183,24 @@ class DetailedView extends React.Component {
 
   //gets user data and adds to state - can see in console right now
   getUserData(token) {
-    // const obj =  getFromStorage('the_main_app')
-    console.log(token);
     fetch('/api/data/all?token=' + token)
       .then(res => res.json())
       .then(json => {
         if (json.success) {
           this.setState({userData: json.data})
           console.log(this.state.userData)
+        } else {
+          console.log("error")
+        }
+    })
+  } 
+
+  getTypeData(token) {
+    fetch('/api/settings/all?token=' + token)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.setState({doughVals: json.doughVals, billVals: json.billVals});
         } else {
           console.log("error")
         }
@@ -222,7 +234,7 @@ class DetailedView extends React.Component {
   							</ul>
   						</div>
   						<div id="sideForm">
-  							<SideBar activeIndex={this.state.active}/>
+  							<SideBar activeIndex={this.state.active} doughVals={this.state.doughVals} billVals={this.state.billVals}/>
                 <button onClick={this.postForm} className="btn waves-effect waves-light sideSubmit">{this.state.buttonText}</button>
                 <div id="formMessage11" className="helper-text center-align hide"></div>
   						</div>

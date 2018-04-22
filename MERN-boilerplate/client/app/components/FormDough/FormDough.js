@@ -7,6 +7,21 @@ class FormDough extends React.Component {
 	}
 
 	componentDidMount(){
+		this.dropDownCreate();
+	}
+
+	componentDidUpdate(){
+		this.dropDownCreate();
+	}
+
+	dropDownCreate(){
+		let doughList = this.props.doughVals;
+		
+		if (doughList !== null) {
+			for (let i=0; i <doughList.length; i++){
+				$(".formDoughSource").append("<option value="+doughList[i]+">"+doughList[i]+"</option>");
+			}
+		}
 		this.initializeInputs();
 	}
 
@@ -31,8 +46,7 @@ class FormDough extends React.Component {
 			<div>
 				<div className="input-field">
 				    <select className="formDesc formDoughSource">
-				      <option value="" disabled>Select a Dought Type</option>
-				      <option value="Test">Test</option>
+				    	<option value='' disabled>Select a Dough Type</option>
 				    </select>
 				    <label>Dough Type</label>
 				</div>

@@ -50,36 +50,44 @@ module.exports = (app) => {
     });
   });
 
-  // app.get('/api/data/all', (req, res, next) => {
-  //   //get userID
-  //   // const {body} = req;
-  //   // const {userID} = body;
-  //   // console.log(userID);
-  //   const { query } = req;
-  //   const { token } = query
+  app.get('/api/settings/all', (req, res, next) => {
+    const { query } = req;
+    const { token } = query
 
-  //   //get user data from dough data
-  //   doughData.find({
-  //     userID: token
-  //   }, (err, returnedData) => {
-  //     if (err) {
-  //       return res.send({
-  //         success: false,
-  //         message: 'Error: Server error'
-  //       });
-  //     }
-  //     if (returnedData.length === 0) {
-  //       return res.send({
-  //         success: false,
-  //         message: 'No Data Found'
-  //       });
-  //     } else {
-  //       return res.send({
-  //         success: true,
-  //         message: 'Good to go',
-  //         data: returnedData
-  //       });
-  //     }
-  //   });
-  // });
+    //get user data from dough data
+    doughSettings.find({
+      userID: token
+    }, (err, returnedData) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error'
+        });
+      }
+      if (returnedData.length === 0) {
+        return res.send({
+          success: false,
+          message: 'No Data Found'
+        });
+      } else {
+        let doughVals = [];
+        let billVals = [];
+
+        for (let i=0; i < returnedData.length; i++) {
+          if (returnedData[i].dataType === "Dough"){
+            doughVals.push(returnedData[i].dataDesc)
+          } else {
+            billVals.push(returnedData[i].dataDesc)
+          }
+        }
+
+        return res.send({
+          success: true,
+          message: 'Good to go',
+          doughVals: doughVals,
+          billVals: billVals
+        });
+      }
+    });
+  });
 };  
