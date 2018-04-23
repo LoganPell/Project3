@@ -18,33 +18,37 @@ class Dashboard extends React.Component {
 	};
 
 	getUserData(token){
-    const obj =  getFromStorage('the_main_app')
+	    const obj =  getFromStorage('the_main_app');
+	    let userID = "";
 
-    fetch('/api/data/all?token=' + token)
-      .then(res => res.json())
-      .then(json => {
-        if (json.success) {
-          this.setState({userData: json.data})
-          console.log(this.state.userData)
-        } else {
-          console.log("broke-y no worky")
-        }
-    })
+	    fetch('/api/data/all?token=' + token)
+	      .then(res => res.json())
+	      .then(json => {
+	      	console.log(json)
+	        if (json.success) {
+	        	userID=json.data[0].userID;
+	        	console.log(userID);
+	          this.setState({userData: json.data})
+	          console.log(this.state.userData)
+	        } else {
+	          console.log("broke-y no worky")
+	        }
+	    })
 	};
 
 	pageChange(event) {
-    let page = event.target.getAttribute("href");
+	    let page = event.target.getAttribute("href");
 
-    if (page === "/Dashboard" || page === "/Detailed"){
-      this.setState({currentPage: page})
-    }
+	    if (page === "/Dashboard" || page === "/Detailed"){
+	      this.setState({currentPage: page})
+	    }
   };
 
 	componentDidMount(){
 		const obj =  getFromStorage('the_main_app');
-    const token = obj.token;
-    this.setState({"token": token});
-    console.log(token);
+	    const token = obj.token;
+	    this.setState({"token": token});
+	    console.log(token);
 		this.getUserData(token);
 	};
 
