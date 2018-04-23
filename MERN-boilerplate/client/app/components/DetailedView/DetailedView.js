@@ -30,7 +30,10 @@ class DetailedView extends React.Component {
       currentTip: "",
       tipIndex: 0,
       doughVals: null,
-      billVals: null
+      billVals: null, 
+      doughTotal: 0,
+      billTotal: 0,
+      goalTotal: 0
     }
 
     //binds
@@ -190,7 +193,27 @@ class DetailedView extends React.Component {
       .then(res => res.json())
       .then(json => {
         if (json.success) {
-          this.setState({userData: json.data})
+          let userData = json.data;
+          let doughTotal = 0;
+          let billTotal = 0;
+          let goalTotal = 0;
+          let doughSource = [];
+          let billSource = [];
+
+          userData.forEach((dataRecord)=> {
+            if (dataRecord.dataType === "Dough"){
+              //sum total dough
+              doughTotal += dataRecord.dataAmount
+            } else if (dataRecord.dataType === "Bill") {
+              //sum total bills
+              billTotal += dataRecord.dataAmount
+            } else {
+              //sum total goals
+              goalTotal += dataRecord.dataAmount
+            }
+          })
+
+          this.setState({userData: userData, doughTotal: doughTotal, billTotal: billTotal, goalTotal: goalTotal})
           console.log(this.state.userData);
         } else {
           console.log("error")
@@ -238,7 +261,7 @@ class DetailedView extends React.Component {
 	render(){
     //table logic
     let table = (<div>Add some dough!</div>);
-
+    let chart1; 
     if (this.state.userData.length > 0){
       table = (
         <div>
@@ -271,6 +294,14 @@ class DetailedView extends React.Component {
           </table>
         </div>
       )
+
+      chart1 = (
+        <Chart1 
+            doughData={this.state.doughTotal}
+            billData={this.state.billTotal}
+            goalData={this.state.goalTotal}
+        />
+      )
     }
 
     //main detailed return
@@ -298,10 +329,8 @@ class DetailedView extends React.Component {
   				</div>
   
 					<div id="main" className="">
-						<div>User Data</div>
+            {chart1}
             {table}
-
-            <Chart1 />
             <Chart2 />
             <Chart3 />
 					</div>

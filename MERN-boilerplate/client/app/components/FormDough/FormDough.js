@@ -77,10 +77,8 @@ class FormDough extends React.Component {
 		 			
 		 			<div className="input-field">
 				    <select className="formDoughRecurrance formRecurrance">
-				      <option value="" disabled>Reccurance</option>
 				      <option value="One Time">One Time</option>
-				      <option value="Weekly">Weekly</option>
-				      <option value="Monthy">Monthly</option>
+				      <option value="Monthly" disabled>Monthly - Coming Soon!!</option>
 				    </select>
 				    <label>Reccurance</label>
 
