@@ -4,6 +4,9 @@ import React from "react";
 class FormDough extends React.Component {
 	constructor(props) {
   	super(props);
+  	this.state = {
+  		listLen: 0,
+  	}
 	}
 
 	componentDidMount(){
@@ -11,18 +14,28 @@ class FormDough extends React.Component {
 	}
 
 	componentDidUpdate(){
-		this.dropDownCreate();
+		let doughList = this.props.doughVals;
+		if (doughList !== null) {
+			let doughLen = doughList.length;
+			if (doughLen > this.state.listLen){
+				this.dropDownCreate();
+			}
+		}
 	}
 
 	dropDownCreate(){
 		let doughList = this.props.doughVals;
+		let doughLen = 0;
 		
 		if (doughList !== null) {
-			for (let i=0; i <doughList.length; i++){
+			doughLen = doughList.length;
+			for (let i=0; i <doughLen; i++){
 				$(".formDoughSource").append("<option value="+doughList[i]+">"+doughList[i]+"</option>");
 			}
 		}
+
 		this.initializeInputs();
+		this.setState({listLen: doughLen})
 	}
 
   initializeInputs() {

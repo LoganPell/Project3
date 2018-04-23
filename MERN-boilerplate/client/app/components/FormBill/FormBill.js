@@ -4,25 +4,38 @@ import React from "react";
 class FormBill extends React.Component {
 	constructor(props) {
   	super(props);
+  	this.state = {
+  		listLen: 0
+  	}
 	}
 
 	componentDidMount(){
 		this.dropDownCreate();
 	}
 
-	componentDidUpdate(){
-		this.dropDownCreate();
+componentDidUpdate(){
+		let doughList = this.props.billVals;
+		if (doughList !== null) {
+			let doughLen = doughList.length;
+			if (doughLen > this.state.listLen){
+				this.dropDownCreate();
+			}
+		}
 	}
 
 	dropDownCreate(){
-		let billList = this.props.billVals;
+		let doughList = this.props.billVals;
+		let doughLen = 0;
 		
-		if (billList !== null) {
-			for (let i=0; i <billList.length; i++){
-				$(".formBillType").append("<option value="+billList[i]+">"+billList[i]+"</option>");
+		if (doughList !== null) {
+			doughLen = doughList.length;
+			for (let i=0; i <doughLen; i++){
+				$(".formBillType").append("<option value="+doughList[i]+">"+doughList[i]+"</option>");
 			}
 		}
+
 		this.initializeInputs();
+		this.setState({listLen: doughLen})
 	}
 
   initializeInputs() {
