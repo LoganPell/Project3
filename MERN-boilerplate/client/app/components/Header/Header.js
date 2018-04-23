@@ -58,18 +58,26 @@ class Header extends Component{
 			);
 		} else if (token) {
 			return (
-				<header>
-			    		<nav>
-			    			<div className="nav-wrapper">
-			    			<Link to="#">Dough Flow</Link>
-			    			<ul className="right">
-				      		<li><Link to="/Dashboard" onClick={this.props.headerClick}>Dashboard</Link></li>
-				      		<li><Link to="/Detailed" onClick={this.props.headerClick}>Detailed View</Link></li>
-				      		<li><Link to="#" onClick={this.props.logoutFunc}>Logout</Link></li>
-				      	</ul>
-				      	</div>
-			    		</nav>
-				</header>
+				<div className="navbar-fixed">
+					<nav className="transparent z-depth-0">
+						<div className="nav-wrapper">
+							<Link to="/" className="brand-logo left" onClick={this.props.headerClick}>Dough Flow</Link>
+							<a href="#" data-target="mobile-nav" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+							<ul className="hide-on-med-and-down right">
+				      			<li><Link to="/Dashboard" onClick={this.props.headerClick}>Home</Link></li>
+				      			<li><Link to="/Detailed" onClick={this.props.headerClick}>Details</Link></li>
+				      			<li><a onClick={this.props.logoutFunc}>Logout</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul id="mobile-nav" className="sidenav">
+				      			<li><Link to="/Dashboard" onClick={this.props.headerClick}>Home</Link></li>
+				      			<li><Link to="/Detailed" onClick={this.props.headerClick}>Details</Link></li>
+				      			<li><a onClick={this.props.logoutFunc}>Logout</a></li>
+							</ul>
+						</div>
+		    		</nav>
+				</div>	
 		    );
 		}	
 	}

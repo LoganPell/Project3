@@ -1,7 +1,6 @@
-/*body{
-	background-color: black;
-	color: black;
-}*/
+body{
+	background-color: #589cad;
+}
 
 .card-image{
 	position: relative;
@@ -11,9 +10,35 @@
 	position: absolute;
 	max-width: 60%;
 	max-height: 60%;
-	top: 5rem;
-	left: 5rem;
+	top: 4rem;
+	left: 4rem;
 
 }
 
+@media screen and (max-width: 1024px) {
+	.icons{
+		top: 3rem;
+		left: 3rem;
+	}
+}
 
+@media screen and (max-width: 750px) {
+	.icons{
+		top: 2rem;
+		left: 2rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.icons{
+		top: 6rem;
+		left: 6rem;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.icons{
+		top: 4rem;
+		left: 4rem;
+	}
+}
