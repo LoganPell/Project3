@@ -16,7 +16,7 @@ class Chart1 extends React.Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [65, 59, 80]
+          data: [this.props.doughData, this.props.billData, this.props.goalData]
         }
       ],
     };

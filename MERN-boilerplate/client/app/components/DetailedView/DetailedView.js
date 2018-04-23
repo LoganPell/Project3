@@ -296,7 +296,11 @@ class DetailedView extends React.Component {
       )
 
       chart1 = (
-        <Chart1 />
+        <Chart1 
+            doughData={this.state.doughTotal}
+            billData={this.state.billTotal}
+            goalData={this.state.goalTotal}
+        />
       )
     }
 
