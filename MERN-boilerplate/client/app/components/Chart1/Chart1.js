@@ -8,7 +8,7 @@ class Chart1 extends React.Component {
   
   render(){
     const data = {
-      labels: ['Dough', 'Bills', 'Goals'],
+      labels: ['Status', 'Goal'],
       datasets: [
         {
           backgroundColor: 'rgba(255,99,132,0.2)',
@@ -16,7 +16,7 @@ class Chart1 extends React.Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [this.props.doughData, this.props.billData, this.props.goalData]
+          data: [(this.props.doughData - this.props.billData), this.props.goalData]
         }
       ],
     };
