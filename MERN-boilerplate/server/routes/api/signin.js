@@ -122,6 +122,7 @@ module.exports = (app) => {
     user.find({
       email: email
     }, (err, users) => {
+
       if (err) {
         return res.send({
           success: false,
@@ -144,7 +145,8 @@ module.exports = (app) => {
       }
 
       const newUserSession = new userSession();
-      newUserSession.userId = users._id;
+      newUserSession.userId = users[0]._id;
+     
       newUserSession.save((err, doc) => {
         if (err) {
           return res.send({
@@ -191,6 +193,32 @@ module.exports = (app) => {
       }
     });
   });
+  //get userID from token 
+  app.get('/api/account/user', (req, res, next) => {
+    //get token
+    const { query } = req;
+    const { token } = query
+
+    //verify token is unique
+    userSession.find({
+      _id: token,
+      isDeleted: false
+    }, (err, sessions) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error'
+        });
+      } else {
+        return res.send({
+          success: true,
+          message: 'Good to go',
+          data: sessions
+        });
+      }
+    });
+  });
+
 
   app.get('/api/account/logout', (req, res, next) => {
     //get token

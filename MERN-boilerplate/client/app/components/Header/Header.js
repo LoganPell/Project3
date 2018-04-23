@@ -60,10 +60,14 @@ class Header extends Component{
 			return (
 				<header>
 			    		<nav>
-				      		<Link to="/">Hmmm</Link>
-				      		<Link to="/Dashboard" onClick={this.props.headerClick}>Dashboard</Link>
-				      		<Link to="/Detailed" onClick={this.props.headerClick}>Detailed View</Link>
-				      		<button onClick={this.props.logoutFunc}>Logout</button>
+			    			<div className="nav-wrapper">
+			    			<Link to="#">Dough Flow</Link>
+			    			<ul className="right">
+				      		<li><Link to="/Dashboard" onClick={this.props.headerClick}>Dashboard</Link></li>
+				      		<li><Link to="/Detailed" onClick={this.props.headerClick}>Detailed View</Link></li>
+				      		<li><Link to="#" onClick={this.props.logoutFunc}>Logout</Link></li>
+				      	</ul>
+				      	</div>
 			    		</nav>
 				</header>
 		    );

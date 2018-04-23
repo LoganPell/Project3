@@ -23,6 +23,7 @@ class DetailedView extends React.Component {
       activeText: "Dough",
       buttonText: "Add Dough",
       token: null,
+      userID: "",
       isLoading: null,
       postMessage: null,
       userData: [],
@@ -71,18 +72,30 @@ class DetailedView extends React.Component {
     //gets user token
     const obj =  getFromStorage('the_main_app');
     const token = obj.token;
-    //gets user data from database
-    this.getUserData(token);
-    this.getTypeData(token);
+    let userID = "";
+    let randomTip = Math.floor(Math.random() * 15) + 1;
 
-    this.setState({"token": token, currentTip: this.state.doughTips[0]})
+    fetch('/api/account/user?token=' + token)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          userID = json.data[0].userId
+          this.getUserData(userID);
+          this.getTypeData(userID);
+          this.setState({userID: userID, "token": token, currentTip: this.state.doughTips[randomTip]})
+          console.log(this.state.userID)
+        } else {
+          console.log("error")
+        }
+    })
+    
   }
 
   //adds new entry to database from the data in the sidebar
   postForm() {
 
   if (this.state.activeText !== "Settings") {
-    const userValue = this.state.token;
+    const userValue = this.state.userID;
     const dataTypeValue = this.state.active;
     const dataDescValue = $(".formDesc").val();
     let dataRecurranceValue = $(".formRecurrance").val();
@@ -147,7 +160,7 @@ class DetailedView extends React.Component {
       });
 
     } else {
-      const userValue = this.state.token;
+      const userValue = this.state.userID;
       const dataSettingsType = $(".formSettingType").val();
       const dataSettingsDesc = $(".formSettingDesc").val();
 
@@ -233,6 +246,8 @@ class DetailedView extends React.Component {
     })
   } 
 
+
+
   getDoughTip(){
    let bankLen = this.state.doughTips.length;
    let currentIndex = this.state.tipIndex;
@@ -251,7 +266,7 @@ class DetailedView extends React.Component {
       .then(res => res.json())
       .then(json => {
         if (json.success) {
-          this.getUserData(this.state.token)
+          this.getUserData(this.state.userID)
         } else {
           console.log("error")
         }
@@ -329,6 +344,7 @@ class DetailedView extends React.Component {
   				</div>
   
 					<div id="main" className="">
+            <h5>Transactions</h5>
             {chart1}
             {table}
             <Chart2 />

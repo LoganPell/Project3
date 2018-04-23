@@ -25,7 +25,6 @@ class Chart1 extends React.Component {
     
     return (
       <div>
-        <p>Bar Example</p>
         <Bar
           data={data}
           width={120}
