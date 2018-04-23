@@ -16,13 +16,6 @@ const DashCard = (props) => (
 				<span className="card-title">{props.name}</span>
 				<p>Other Info here!!</p>
 			</div>
-			<div className="card-action">
-					<a className="waves-effect waves-teal btn-flat green accent-2 white-text" id="incomeBtn">
-						<i className="material-icons left">more_horiz</i>
-						More
-					</a>
-					<Link to="/Detailed" onClick={props.moreClick}>Detailed View</Link>
-			</div>
 		</div>
 	</div>
 );
