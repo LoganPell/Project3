@@ -78,7 +78,6 @@ componentDidUpdate(){
 				    <select className="formBillRecurrance formRecurrance">
 				      <option value="" disabled>Reccurance</option>
 				      <option value="One Time">One Time</option>
-				      <option value="Weekly">Weekly</option>
 				      <option value="Monthly">Monthly</option>
 				    </select>
 				    <label>Reccurance</label>
