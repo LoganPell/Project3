@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import currency from 'currency-formatter';
 // import SideMenu from "../SideMenu/SideMenu";
 import SideBar from "../SideBar/SideBar";
 import Chart1 from "../Chart1/Chart1";
 import Chart2 from "../Chart2/Chart2";
 import Chart3 from "../Chart3/Chart3";
+import ListAll from "../ListAll/ListAll";
 import DoughTips from "../DoughTips/DoughTips";
 import tipBank from "./tips.json"
 import 'whatwg-fetch';
@@ -188,7 +191,7 @@ class DetailedView extends React.Component {
       .then(json => {
         if (json.success) {
           this.setState({userData: json.data})
-          console.log(this.state.userData)
+          console.log(this.state.userData);
         } else {
           console.log("error")
         }
@@ -218,9 +221,59 @@ class DetailedView extends React.Component {
     this.setState({tipIndex: currentIndex, currentTip: this.state.doughTips[currentIndex]})
    }
   }
-
+      
+  deleteEntry(entryID){
+    console.log(entryID)
+    fetch('/api/data/delete?id=' + entryID)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.getUserData(this.state.token)
+        } else {
+          console.log("error")
+        }
+    })
+  }
 
 	render(){
+    //table logic
+    let table = (<div>Add some dough!</div>);
+
+    if (this.state.userData.length > 0){
+      table = (
+        <div>
+           <table>
+            <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+          {this.state.userData.map((entry) => {
+    
+              return(<ListAll 
+                date={moment(entry.dataDate).format("MM/DD/YYYY")}
+                key={entry._id}
+                type={entry.dataType}
+                desc={entry.dataDesc}
+                amount={currency.format(entry.dataAmount, "USD")}
+                recurrance={entry.dataReccurance}
+                deleteClick={() => {this.deleteEntry(entry._id)}}
+                />)
+            })
+          }
+             </tbody>
+          </table>
+        </div>
+      )
+    }
+
+    //main detailed return
 		return (
 			<div id="DetailedContainer">
         <div id="sideContainer">
@@ -246,6 +299,8 @@ class DetailedView extends React.Component {
   
 					<div id="main" className="">
 						<div>User Data</div>
+            {table}
+
             <Chart1 />
             <Chart2 />
             <Chart3 />

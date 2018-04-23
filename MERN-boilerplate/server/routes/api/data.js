@@ -14,11 +14,11 @@ module.exports = (app) => {
 
 
     if (dataType === 0){
-      dataType = "dough";
+      dataType = "Dough";
     } else if (dataType === 1){
-      dataType = "bill";
+      dataType = "Bill";
     } else if (dataType === 2) {
-      dataType = "goal"
+      dataType = "Goal"
     } else {
       return res.send({
         success: false,
@@ -109,4 +109,27 @@ module.exports = (app) => {
       }
     });
   });
+
+  //delete
+  app.get('/api/data/delete', (req, res, next) => {
+    const { query } = req;
+    const { id } = query
+    //get user data from dough data
+    doughData.remove({
+      _id: id
+    }, (err, returnedData) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error'
+        });
+      } else {
+        return res.send({
+          success: true,
+          message: 'Good to go'
+        });
+      }
+    });
+  });
+
 };  
