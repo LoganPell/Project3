@@ -34,7 +34,9 @@ class DetailedView extends React.Component {
       billVals: null, 
       doughTotal: 0,
       billTotal: 0,
-      goalTotal: 0
+      goalTotal: 0,
+      billSources: [],
+      doughSources: []
     }
 
     //binds
@@ -210,24 +212,76 @@ class DetailedView extends React.Component {
           let doughTotal = 0;
           let billTotal = 0;
           let goalTotal = 0;
+          let doughSourceVals = [];
           let doughSource = [];
+          let doughFinal = [];
           let billSource = [];
+          let billSourceVals = [];
+          let billFinal = [];
 
           userData.forEach((dataRecord)=> {
             if (dataRecord.dataType === "Dough"){
               //sum total dough
               doughTotal += dataRecord.dataAmount
+              doughSourceVals.push([dataRecord.dataDesc, dataRecord.dataAmount])
+
+              if (doughSource.indexOf(dataRecord.dataDesc)==-1) {
+                doughSource.push(dataRecord.dataDesc);
+              }
+
             } else if (dataRecord.dataType === "Bill") {
               //sum total bills
               billTotal += dataRecord.dataAmount
+              billSourceVals.push([dataRecord.dataDesc, dataRecord.dataAmount])
+
+              if (billSource.indexOf(dataRecord.dataDesc)==-1) {
+                billSource.push(dataRecord.dataDesc);
+              }
             } else {
               //sum total goals
               goalTotal += dataRecord.dataAmount
             }
           })
 
-          this.setState({userData: userData, doughTotal: doughTotal, billTotal: billTotal, goalTotal: goalTotal})
+          billSource.forEach((dataRecord)=> {
+            let totalVal = 0;
+            let matchType = dataRecord
+            // console.log("Match Type", matchType);
+            billSourceVals.forEach((arrayPair)=>{
+              let type = arrayPair[0]
+              let value = arrayPair[1];
+              // console.log("Type", type);
+              // console.log("Value", value);
+
+              if(matchType === type){
+                totalVal += value
+              }
+            })
+            billFinal.push([dataRecord, totalVal])
+          })
+
+          doughSource.forEach((dataRecord)=> {
+            let totalVal = 0;
+            let matchType = dataRecord
+            // console.log("Match Type", matchType);
+            doughSourceVals.forEach((arrayPair)=>{
+              let type = arrayPair[0]
+              let value = arrayPair[1];
+              // console.log("Type", type);
+              // console.log("Value", value);
+
+              if(matchType === type){
+                totalVal += value
+              }
+            })
+            doughFinal.push([dataRecord, totalVal])
+          })
+
+
+          this.setState({userData: userData, doughTotal: doughTotal, billTotal: billTotal, goalTotal: goalTotal, billSources: billFinal, doughSources: doughFinal})
           console.log(this.state.userData);
+          console.log(this.state.doughSources);
+          console.log(this.state.billSources)
         } else {
           console.log("error")
         }
@@ -312,9 +366,9 @@ class DetailedView extends React.Component {
 
       chart1 = (
         <Chart1 
-            doughData={this.state.doughTotal}
-            billData={this.state.billTotal}
-            goalData={this.state.goalTotal}
+            doughTotal={this.state.doughTotal}
+            billTotal={this.state.billTotal}
+            goalTotal={this.state.goalTotal}
         />
       )
     }
@@ -344,11 +398,18 @@ class DetailedView extends React.Component {
   				</div>
   
 					<div id="main" className="">
+            <h5>Overview</h5>
+            <Chart3 
+              doughData={this.state.doughTotal}
+              billData={this.state.billTotal}
+              goalData={this.state.goalTotal}
+            />
+
             <h5>Transactions</h5>
             {chart1}
             {table}
             <Chart2 />
-            <Chart3 />
+            
 					</div>
 		  </div>
 	)};
