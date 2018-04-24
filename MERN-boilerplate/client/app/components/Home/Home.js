@@ -10,6 +10,7 @@ import {
   getFromStorage,
   setInStorage
 } from '../../utils/storage'
+import LandingPage from '../../../../../client/app/components/LandingPage/LandingPage';
 
 class Home extends Component {
   constructor(props) {
@@ -249,26 +250,29 @@ class Home extends Component {
     if (!token) {
       return (
         <div>
-        <div>
-          <header>
-              <nav>
-                <Link to="/">Dough Flow</Link>
-              </nav>
-          </header>
-          </div>
-          <div>
+         <div className="row">
+          <div className="col s12 m12 l3 ">
+            <div className="logo">
+            <img className="responsive-img" height="300px" img src="assets/img/logo.png" />
+            </div>
+           </div>
+
+       <div className="col s12 m6 l3 push-l2">
             {
               (signInError) ? (
                 <p>{signInError}</p>
               ) : (null)
             }
-            <p>Sign In</p>
+            <div className="email">
               <input 
                 type="email" 
                 placeholder="Email" 
                 value={signInEmail} 
                 onChange={this.onTextboxChangeSignInEmail}
-              /><br />
+              />
+              </div>
+             </div>
+             <div className="col s12 m6 l3 push-l2">
               <input 
                 type="password" 
                 placeholder="Password" 
@@ -277,15 +281,20 @@ class Home extends Component {
               /><br />
               <button onClick={this.onSignIn}>Sign In</button>
           </div>
-          <br />
-          <br />
-          <div>
+          </div>
+          
+
+          <div className="row">
+          <div className="col s12 m12 l4 push-l1">
+         
+          <div className="log-in " blue-grey lighten-5>
+          
             {
               (signUpError) ? (
                 <p>{signUpError}</p>
               ) : (null)
             }
-            <p>Sign Up</p>
+            <h4>Sign Up</h4>
               <input 
               type="text" 
               placeholder="First Name" 
@@ -312,6 +321,19 @@ class Home extends Component {
             /><br />
             <button onClick={this.onSignUp}>Sign Up</button>
           </div>
+        </div>
+
+        <div className='col s12 m6 l5 push-l2 pull-s4'>
+          <div className="nikki">
+           <div className="lady-image"> 
+           <div class="hide-on-small-only">
+             <img class="responsive-image" img src="assets/img/landing-page-image.png" />
+             </div>
+           </div>
+          </div>
+          </div>
+          </div>
+        <LandingPage />
         </div>
       );
     }
