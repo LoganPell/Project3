@@ -6,6 +6,7 @@ import SideBar from "../SideBar/SideBar";
 import Chart1 from "../Chart1/Chart1";
 import Chart2 from "../Chart2/Chart2";
 import Chart3 from "../Chart3/Chart3";
+import Chart4 from "../Chart4/Chart4";
 import ListAll from "../ListAll/ListAll";
 import DoughTips from "../DoughTips/DoughTips";
 import tipBank from "./tips.json"
@@ -300,8 +301,6 @@ class DetailedView extends React.Component {
     })
   } 
 
-
-
   getDoughTip(){
    let bankLen = this.state.doughTips.length;
    let currentIndex = this.state.tipIndex;
@@ -409,7 +408,9 @@ class DetailedView extends React.Component {
             {chart1}
             {table}
             <Chart2 />
-            
+            <Chart4 />
+            <Chart3 />
+
 					</div>
 		  </div>
 	)};
