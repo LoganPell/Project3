@@ -10,7 +10,7 @@ import {
   getFromStorage,
   setInStorage
 } from '../../utils/storage'
-import LandingPage from '../../../../../client/app/components/LandingPage/LandingPage';
+import LandingPage from '../LandingPage/LandingPage';
 
 class Home extends Component {
   constructor(props) {
@@ -273,13 +273,15 @@ class Home extends Component {
               </div>
              </div>
              <div className="col s12 m6 l3 push-l2">
-              <input 
-                type="password" 
-                placeholder="Password" 
-                value={signInPassword} 
-                onChange={this.onTextboxChangeSignInPassword}
-              /><br />
-              <button onClick={this.onSignIn}>Sign In</button>
+              <div className="password">
+                <input 
+                  type="password" 
+                  placeholder="Password" 
+                  value={signInPassword} 
+                  onChange={this.onTextboxChangeSignInPassword}
+                /><br />
+                <button onClick={this.onSignIn}>Sign In</button>
+              </div>
           </div>
           </div>
           
