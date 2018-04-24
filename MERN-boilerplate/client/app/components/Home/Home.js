@@ -10,11 +10,9 @@ import {
   getFromStorage,
   setInStorage
 } from '../../utils/storage'
-<<<<<<< HEAD
+
 import LandingPage from '../LandingPage/LandingPage';
-=======
-import LandingPage from '../../../../../client/app/components/LandingPage/LandingPage';
->>>>>>> c1345cd0b33260e54e7cc7ac3b05f1981a9c5aee
+
 
 class Home extends Component {
   constructor(props) {
