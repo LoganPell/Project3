@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+
+
+
+
+
+
+
+
+
 const LandingPage = () => (
  <div className="body-container">
     <div className="section">
@@ -50,7 +59,7 @@ const LandingPage = () => (
     <div className="section-3">
     <div className="row">
     <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
+      <div className="card small blue lighten-5">
        <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
@@ -61,7 +70,7 @@ const LandingPage = () => (
       </div>
     </div>
     <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
+      <div className="card small blue lighten-5">
        <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
@@ -73,7 +82,7 @@ const LandingPage = () => (
     </div>
 
      <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
+      <div className="card small blue lighten-5">
        <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
@@ -85,7 +94,7 @@ const LandingPage = () => (
     </div>
 
     <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
+      <div className="card small blue lighten-5">
        <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
@@ -99,6 +108,15 @@ const LandingPage = () => (
   </div>
   </div>
   </div>
+
+ 
+ 
+    
+ 
+
+
+
+
     
     
 );
