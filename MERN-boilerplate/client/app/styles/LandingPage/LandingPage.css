@@ -32,7 +32,7 @@ p {
 
  
 
-  .card{
+  .LPcard{
     text-align: center;
     width:auto;
     height: 150px;
@@ -49,7 +49,7 @@ p {
     padding:5px;
   
   }
-  .card{
+  .LPcard{
     width:25%px;
     border-radius: 25px;
   }
