@@ -5,33 +5,11 @@ class Chart2 extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      dataArray: [],
-      labelArray: []
-    }
-  }
-
-  componentWillUpdate(){
-   this.breakoutArrays()
-  }
-
-  breakoutArrays(){
-    let newLabelArray = [];
-    let newDataArray = [];
-
-    let passedData = this.props.arrayData;
-    
-    passedData.forEach(function(element) {
-      newLabelArray.push(element[0])
-      newDataArray.push(element[1])
-    });
-
-    this.setState({labelArray: newLabelArray, dataArray: newDataArray})
   }
 
   render() {
     const data = {
-      labels: this.state.labelArray,
+      labels: this.props.labelArray,
       datasets: [
         {
           label: 'Dough/Income',
@@ -40,7 +18,7 @@ class Chart2 extends React.Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(99,255,132,0.4)',
           hoverBorderColor: 'rgba(99,255,132,1)',
-          data: this.state.dataArray
+          data: this.props.dataArray
         },
       ]
     };

@@ -4,34 +4,12 @@ import {HorizontalBar} from 'react-chartjs-2';
 class Chart4 extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      dataArray: [],
-      labelArray: []
-    }
   }
 
-  componentWillUpdate(){
-   this.breakoutArrays()
-  }
-
-  breakoutArrays(){
-    let newLabelArray = [];
-    let newDataArray = [];
-
-    let passedData = this.props.arrayData;
-    
-    passedData.forEach(function(element) {
-      newLabelArray.push(element[0])
-      newDataArray.push(element[1])
-    });
-
-    this.setState({labelArray: newLabelArray, dataArray: newDataArray})
-  }
 
   render() {
     const data = {
-      labels: this.state.labelArray,
+      labels: this.props.labelArray,
       datasets: [
         {
           label: 'Bills/Expenses',
@@ -40,7 +18,7 @@ class Chart4 extends React.Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: this.state.dataArray
+          data: this.props.dataArray
         }
       ]
     };
