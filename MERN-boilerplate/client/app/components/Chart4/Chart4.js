@@ -47,7 +47,17 @@ class Chart4 extends React.Component {
 
     return (
       <div>
-        <HorizontalBar data={data} />
+        <HorizontalBar 
+          data={data}
+          options={
+          {scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+         }}
+        } />
       </div>
     );
   }

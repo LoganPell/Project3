@@ -393,8 +393,8 @@ class DetailedView extends React.Component {
             />
             <h5>Progress</h5>
              <Chart1 
-              doughData={currency.format(this.state.doughTotal, "USD")}
-              billData={currency.format(this.state.billTotal, "USD")}
+              doughData={this.state.doughTotal}
+              billData={this.state.billTotal}
               goalData={this.state.goalTotal}
             />
             <h5>Dough Sources</h5>

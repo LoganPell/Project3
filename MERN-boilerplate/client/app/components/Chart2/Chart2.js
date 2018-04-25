@@ -41,13 +41,23 @@ class Chart2 extends React.Component {
           hoverBackgroundColor: 'rgba(99,255,132,0.4)',
           hoverBorderColor: 'rgba(99,255,132,1)',
           data: this.state.dataArray
-        }
+        },
       ]
     };
 
     return (
       <div>
-        <HorizontalBar data={data} />
+        <HorizontalBar 
+        data={data} 
+        options={
+          {scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+         }}
+        }/>
       </div>
     );
   }

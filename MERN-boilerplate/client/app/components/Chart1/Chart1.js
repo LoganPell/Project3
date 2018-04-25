@@ -6,12 +6,11 @@ class Chart1 extends React.Component {
   constructor(props) {
     super(props);
   }
+
+ 
+  
   
   render(){
-    let status = this.props.doughData - this.props.billData;
-    let goals = this.props.goalData;
-    console.log("STATUS",status);
-    console.log("GOALS",goals)
     let data = {
       labels: ['', ''],
       datasets: [
@@ -25,12 +24,10 @@ class Chart1 extends React.Component {
             '#36A2EB',
             '#FFCE56'
             ],
-          data: [status, goals]
+          data: [this.props.doughData - this.props.billData, this.props.goalData]
         }
       ],
     };
-
-  
     
     return (
       <div>
@@ -64,11 +61,11 @@ class Chart1 extends React.Component {
           <div className="row">
             <div className="col s6 center-align">
               <div className="overviewText">Extra Income</div>
-              <div className="overviewTextS">{currency.format(status, "USD")}</div>
+              <div className="overviewTextS">{currency.format((this.props.doughData - this.props.billData), "USD")}</div>
             </div>
             <div className="col s6 center-align">
               <div className="overviewText">Goals</div>
-              <div className="overviewTextS">{currency.format(goals, "USD")}</div>
+              <div className="overviewTextS">{currency.format(this.props.goalData, "USD")}</div>
             </div>
           </div>
         </div>
