@@ -11,6 +11,7 @@ const ListAll = (props) => {
       		 <a onClick={props.deleteClick} className="waves-effect waves-light btn-small"><i className="material-icons">delete_forever</i></a>
       	</td>
       </tr>
+
     )
 };
 

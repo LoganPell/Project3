@@ -1,27 +1,33 @@
 import React from "react";
 import {Bar} from 'react-chartjs-2';
+import currency from 'currency-formatter';
 
 class Chart1 extends React.Component {
   constructor(props) {
     super(props);
   }
+
+ 
+  
   
   render(){
-    const data = {
-      labels: ['Status', 'Goal'],
+    let data = {
+      labels: ['', ''],
       datasets: [
         {
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: [
+            '#36A2EB',
+            '#FFCE56'
+            ],
           borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-          hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [(this.props.doughData - this.props.billData), this.props.goalData]
+          hoverBackgroundColor: [
+            '#36A2EB',
+            '#FFCE56'
+            ],
+          data: [this.props.doughData - this.props.billData, this.props.goalData]
         }
       ],
     };
-
-  
     
     return (
       <div>
@@ -37,7 +43,7 @@ class Chart1 extends React.Component {
                       beginAtZero:true
                   },
                   gridLines: {
-                    display:false
+                    display:true
                   }   
               }],
               xAxes: [{
@@ -51,6 +57,18 @@ class Chart1 extends React.Component {
             },
           }}
         />
+        <div>
+          <div className="row">
+            <div className="col s6 center-align">
+              <div className="overviewText">Extra Dough</div>
+              <div className="overviewTextS">{currency.format((this.props.doughData - this.props.billData), "USD")}</div>
+            </div>
+            <div className="col s6 center-align">
+              <div className="overviewText">Goals</div>
+              <div className="overviewTextS">{currency.format(this.props.goalData, "USD")}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

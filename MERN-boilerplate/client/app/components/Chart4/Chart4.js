@@ -6,9 +6,10 @@ class Chart4 extends React.Component {
     super(props);
   }
 
+
   render() {
     const data = {
-      labels: ['Gas', 'Rent', 'Food', 'Phone'],
+      labels: this.props.labelArray,
       datasets: [
         {
           label: 'Bills/Expenses',
@@ -17,15 +18,26 @@ class Chart4 extends React.Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [65, 59, 80, 81, 56, 55, 40]
+          data: this.props.dataArray
         }
       ]
     };
 
     return (
       <div>
-        <h3>Bills/Expenses</h3>
-        <HorizontalBar data={data} />
+        <HorizontalBar 
+          data={data}
+          options={
+          {scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+         },
+         legend: false
+        }
+        } />
       </div>
     );
   }

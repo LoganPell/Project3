@@ -37,7 +37,9 @@ class DetailedView extends React.Component {
       billTotal: 0,
       goalTotal: 0,
       billSources: [],
-      doughSources: []
+      doughSources: [],
+      billData: [],
+      doughData: []
     }
 
     //binds
@@ -86,7 +88,6 @@ class DetailedView extends React.Component {
           this.getUserData(userID);
           this.getTypeData(userID);
           this.setState({userID: userID, "token": token, currentTip: this.state.doughTips[randomTip]})
-          console.log(this.state.userID)
         } else {
           console.log("error")
         }
@@ -135,8 +136,6 @@ class DetailedView extends React.Component {
           //hide message
           setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formGood");}, 1500);
          
-          //refresh data
-          this.getUserData(userValue);
           //clear inputs
 
           if (dataTypeValue === 0 || dataTypeValue === 1){
@@ -150,6 +149,8 @@ class DetailedView extends React.Component {
             $(".formLabel").removeClass("active")
           }
           
+          //refresh data
+          return this.getUserData(userValue);
         } else {
           //error
           
@@ -180,7 +181,6 @@ class DetailedView extends React.Component {
     }).then(res => res.json())
       .then(json => {
         if (json.success) {
-          this.getTypeData(userValue);
           //clear 
           $(".formSettingDesc").val("");
           $(".formLabel").removeClass("active")
@@ -190,6 +190,7 @@ class DetailedView extends React.Component {
           $("#formMessage11").text("Successfully Added!");
           //hide message
           setTimeout(function(){$("#formMessage11").addClass("hide"); $("#formMessage11").removeClass("formGood");}, 1500);
+          return this.getTypeData(userValue);
         } else {
         //display message
           $("#formMessage11").addClass("formBad")
@@ -219,6 +220,10 @@ class DetailedView extends React.Component {
           let billSource = [];
           let billSourceVals = [];
           let billFinal = [];
+          let billDataArray = [];
+          let billLabelArray = [];
+          let doughDataArray = [];
+          let doughLabelArray = [];
 
           userData.forEach((dataRecord)=> {
             if (dataRecord.dataType === "Dough"){
@@ -261,6 +266,11 @@ class DetailedView extends React.Component {
             billFinal.push([dataRecord, totalVal])
           })
 
+          billFinal.forEach(function(element) {
+            billLabelArray.push(element[0])
+            billDataArray.push(element[1])
+          });
+
           doughSource.forEach((dataRecord)=> {
             let totalVal = 0;
             let matchType = dataRecord
@@ -278,11 +288,13 @@ class DetailedView extends React.Component {
             doughFinal.push([dataRecord, totalVal])
           })
 
+          doughFinal.forEach(function(element) {
+            doughLabelArray.push(element[0])
+            doughDataArray.push(element[1])
+          });
 
-          this.setState({userData: userData, doughTotal: doughTotal, billTotal: billTotal, goalTotal: goalTotal, billSources: billFinal, doughSources: doughFinal})
-          console.log(this.state.userData);
-          console.log(this.state.doughSources);
-          console.log(this.state.billSources)
+           this.setState({userData: userData, doughTotal: doughTotal, billTotal: billTotal, goalTotal: goalTotal, billSources: billLabelArray, doughSources: doughLabelArray, billData: billDataArray, doughData: doughDataArray})
+
         } else {
           console.log("error")
         }
@@ -319,7 +331,7 @@ class DetailedView extends React.Component {
       .then(res => res.json())
       .then(json => {
         if (json.success) {
-          this.getUserData(this.state.userID)
+          return this.getUserData(this.state.userID)
         } else {
           console.log("error")
         }
@@ -328,10 +340,7 @@ class DetailedView extends React.Component {
 
 	render(){
     //table logic
-    let table = (<div>Add some dough!</div>);
-    let chart1; 
-    if (this.state.userData.length > 0){
-      table = (
+    let table = (
         <div>
            <table>
             <thead>
@@ -362,15 +371,6 @@ class DetailedView extends React.Component {
           </table>
         </div>
       )
-
-      chart1 = (
-        <Chart1 
-            doughTotal={this.state.doughTotal}
-            billTotal={this.state.billTotal}
-            goalTotal={this.state.goalTotal}
-        />
-      )
-    }
 
     //main detailed return
 		return (
@@ -403,14 +403,26 @@ class DetailedView extends React.Component {
               billData={this.state.billTotal}
               goalData={this.state.goalTotal}
             />
-
+            <h5>Progress</h5>
+             <Chart1 
+              doughData={this.state.doughTotal}
+              billData={this.state.billTotal}
+              goalData={this.state.goalTotal}
+            />
+            <h5>Dough Sources</h5>
+            <Chart2 
+              labelArray={this.state.doughSources}
+              dataArray={this.state.doughData}
+            />
+            <h5>Bill Breakdown</h5>
+            <Chart4 
+              labelArray={this.state.billSources}
+              dataArray={this.state.billData}
+            />
             <h5>Transactions</h5>
-            {chart1}
-            {table}
-            <Chart2 />
-            <Chart4 />
-            <Chart3 />
-
+            <div id="transactions">
+              {table}
+            </div>
 					</div>
 		  </div>
 	)};

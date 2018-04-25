@@ -1,5 +1,6 @@
 import React from "react";
 import {Doughnut} from 'react-chartjs-2';
+import currency from 'currency-formatter';
 
 class Chart3 extends React.Component {
   constructor(props) {
@@ -9,30 +10,56 @@ class Chart3 extends React.Component {
   render(){
     const data = {
 		    labels: [
-				'Red',
-				'Green',
-				'Yellow'
+				'Dough',
+				'Bills',
+				'Goals'
 			],
 			datasets: [{
-				data: [300, 50, 100],
+				data: [this.props.doughData, this.props.billData, this.props.goalData],
 				backgroundColor: [
-				'#FF6384',
 				'#36A2EB',
+				'#FF6384',
 				'#FFCE56'
 				],
 				hoverBackgroundColor: [
-				'#FF6384',
 				'#36A2EB',
+				'#FF6384',
 				'#FFCE56'
 				]
 			}]
     
     };
 
+    
+
   
     
     return (
-     	<div>3</div>
+     	<div className="row">
+     			<div className="col s4">
+     				<ul className="center-align">
+     					<li className="overviewText">Total Dough</li>
+     					<li className="overviewTextS">${currency.format(this.props.doughData, "USD")}</li>
+     					<li className="overviewText">Total Bills</li>
+     					<li className="overviewTextS">${currency.format(this.props.billData, "USD")}</li>
+     					<li className="overviewText">Total Goals</li>
+     					<li className="overviewTextS">${currency.format(this.props.goalData, "USD")}</li>
+     				</ul>
+ 					</div>
+     		 	<div className="col s8">
+		        <Doughnut 
+		        	data={data}
+		        	options={{
+		            maintainAspectRatio: true,
+		            legend: {
+		            	display: true,
+		            	position: "bottom"
+		            },
+		          }}
+		        />
+		      </div>
+		      
+     	</div>
     );
   }
 }
