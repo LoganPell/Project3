@@ -397,9 +397,14 @@ class DetailedView extends React.Component {
               billData={currency.format(this.state.billTotal, "USD")}
               goalData={this.state.goalTotal}
             />
-            
-            <Chart2 />
-            <Chart4 />
+            <h5>Dough Sources</h5>
+            <Chart2 
+              arrayData={this.state.doughSources}
+            />
+            <h5>Bill Breakdown</h5>
+            <Chart4 
+              arrayData={this.state.billSources}
+            />
             <h5>Transactions</h5>
             <div id="transactions">
               {table}
