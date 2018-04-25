@@ -56,7 +56,9 @@ class Chart4 extends React.Component {
               beginAtZero:true
             }
           }]
-         }}
+         },
+         legend: false
+        }
         } />
       </div>
     );
