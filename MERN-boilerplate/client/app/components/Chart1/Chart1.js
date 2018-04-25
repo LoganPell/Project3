@@ -60,7 +60,7 @@ class Chart1 extends React.Component {
         <div>
           <div className="row">
             <div className="col s6 center-align">
-              <div className="overviewText">Extra Income</div>
+              <div className="overviewText">Extra Dough</div>
               <div className="overviewTextS">{currency.format((this.props.doughData - this.props.billData), "USD")}</div>
             </div>
             <div className="col s6 center-align">
