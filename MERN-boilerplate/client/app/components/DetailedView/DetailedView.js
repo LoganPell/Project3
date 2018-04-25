@@ -403,14 +403,15 @@ class DetailedView extends React.Component {
               billData={this.state.billTotal}
               goalData={this.state.goalTotal}
             />
-
-            <h5>Transactions</h5>
+            <h5>Progress</h5>
             {chart1}
-            {table}
+            
             <Chart2 />
             <Chart4 />
-            <Chart3 />
-
+            <h5>Transactions</h5>
+            <div id="transactions">
+              {table}
+            </div>
 					</div>
 		  </div>
 	)};
