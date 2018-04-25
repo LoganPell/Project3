@@ -255,11 +255,11 @@ class Home extends Component {
          <div className="row">
           <div className="col s12 m12 l3 ">
             <div className="logo">
-            <img className="responsive-img" height="300px" img src="assets/img/logo.png" />
+              <img className="responsive-img" height="300px" src="assets/img/logo.png" />
             </div>
-           </div>
+          </div>
 
-       <div className="col s12 m6 l3 push-l2">
+          <div className="col s12 m6 l3 push-l2">
             {
               (signInError) ? (
                 <p>{signInError}</p>
@@ -272,8 +272,8 @@ class Home extends Component {
                 value={signInEmail} 
                 onChange={this.onTextboxChangeSignInEmail}
               />
-              </div>
-             </div>
+            </div>
+          </div>
              <div className="col s12 m6 l3 push-l2">
               <div className="password">
                 <input 
@@ -281,64 +281,81 @@ class Home extends Component {
                   placeholder="Password" 
                   value={signInPassword} 
                   onChange={this.onTextboxChangeSignInPassword}
-                /><br />
-                <button onClick={this.onSignIn}>Sign In</button>
+                />
+                <a className="red accent-2 waves-effect waves-light btn" onClick={this.onSignIn}>Sign In</a>
               </div>
+            </div>
           </div>
+            <div className="row">
+              <div className="col s12 m12 l4 push-l1">
+                <div className="log-in card">
+                  <div className="card-content">
+                    {
+                      (signInError) ? (
+                        <p>{signInError}</p>
+                      ) : (null)
+                    }
+                    <span className="card-title">Sign In</span>
+                    <input 
+                      type="email" 
+                      placeholder="Email" 
+                      value={signInEmail} 
+                      onChange={this.onTextboxChangeSignInEmail}
+                    />
+                    <input 
+                      type="password" 
+                      placeholder="Password" 
+                      value={signInPassword} 
+                      onChange={this.onTextboxChangeSignInPassword}
+                    />
+                    <a className="red accent-2 waves-effect waves-light btn" onClick={this.onSignIn}>Sign In</a>
+                  </div>
+                  <div className="card-action">
+                    {
+                      (signUpError) ? (
+                        <p>{signUpError}</p>
+                      ) : (null)
+                    }
+                    <span className="card-title">Sign Up</span>
+                    <input 
+                    type="text" 
+                    placeholder="First Name" 
+                    value={signUpFirstName} 
+                    onChange={this.onTextboxChangeSignUpFirstName}
+                    />
+                    <input 
+                      type="text" 
+                      placeholder="Last Name" 
+                      value={signUpLastName}
+                      onChange={this.onTextboxChangeSignUpLastName} 
+                    />
+                    <input 
+                      type="email" 
+                      placeholder="Email" 
+                      value={signUpEmail} 
+                      onChange={this.onTextboxChangeSignUpEmail}
+                    />
+                    <input 
+                      type="password" 
+                      placeholder="Password" 
+                      value={signUpPassword}
+                      onChange={this.onTextboxChangeSignUpPassword}
+                    />
+                    <a className="red accent-2 waves-effect waves-light btn" onClick={this.onSignUp}>Sign Up</a>
+                  </div>    
+                </div>
+            </div>
+            <div className='col s12 m6 l5 push-l2 pull-s4'>
+              <div className="nikki">
+                <div className="lady-image"> 
+                  <div className="hide-on-small-only">
+                    <img className="responsive-image" src="assets/img/landing-page-image.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          
-
-          <div className="row">
-          <div className="col s12 m12 l4 push-l1">
-         
-          <div className="log-in " blue-grey lighten-5>
-          
-            {
-              (signUpError) ? (
-                <p>{signUpError}</p>
-              ) : (null)
-            }
-            <h4>Sign Up</h4>
-              <input 
-              type="text" 
-              placeholder="First Name" 
-              value={signUpFirstName} 
-              onChange={this.onTextboxChangeSignUpFirstName}
-            /><br />
-              <input 
-                type="text" 
-                placeholder="Last Name" 
-                value={signUpLastName}
-                onChange={this.onTextboxChangeSignUpLastName} 
-            /><br />
-              <input 
-                type="email" 
-                placeholder="Email" 
-                value={signUpEmail} 
-                onChange={this.onTextboxChangeSignUpEmail}
-            /><br />
-              <input 
-                type="password" 
-                placeholder="Password" 
-                value={signUpPassword}
-                onChange={this.onTextboxChangeSignUpPassword}
-            /><br />
-            <button onClick={this.onSignUp}>Sign Up</button>
-          </div>
-        </div>
-
-        <div className='col s12 m6 l5 push-l2 pull-s4'>
-          <div className="nikki">
-           <div className="lady-image"> 
-           <div class="hide-on-small-only">
-             <img class="responsive-image" img src="assets/img/landing-page-image.png" />
-             </div>
-           </div>
-          </div>
-          </div>
-          </div>
-        <LandingPage />
+          <LandingPage />
         </div>
       );
     }
@@ -346,26 +363,20 @@ class Home extends Component {
     {if (this.state.currentPage === "/Dashboard"){
       return (
         <div>
-        <header>
           <Header 
             logoutFunc={()=> this.logout()}
             headerClick={(event)=> this.pageChange(event)}
           />
-        </header>
-
           <Dashboard />
         </div>
       )
     } else if (this.state.currentPage === "/Detailed"){
       return (
         <div>
-        <header>
           <Header 
             logoutFunc={()=> this.logout()} 
             headerClick={(event)=> this.pageChange(event)}
           />
-        </header>
-
           <Detailed />
         </div>
       )

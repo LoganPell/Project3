@@ -59,7 +59,7 @@ class Header extends Component{
 		} else if (token) {
 			return (
 				<div className="navbar-fixed">
-					<nav className="transparent z-depth-0">
+					<nav className="teal darken-2 z-depth-0">
 						<div className="nav-wrapper">
 							<Link to="/" className="brand-logo left" onClick={this.props.headerClick}>Dough Flow</Link>
 							<a href="#" data-target="mobile-nav" className="sidenav-trigger right"><i className="material-icons">menu</i></a>

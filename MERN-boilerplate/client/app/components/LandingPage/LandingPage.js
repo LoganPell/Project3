@@ -1,15 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-
-
-
-
-
-
-
-
-
 const LandingPage = () => (
  <div className="body-container">
     <div className="section">
@@ -19,7 +10,7 @@ const LandingPage = () => (
          <div className="icon-block">
             <div className="icon-pics">
             <div className="pict">
-             <img className="responsive-img" height="200px" img src="assets/img/wallet.jpg" />
+             <img className="responsive-img" height="200px" src="assets/img/wallet.jpg" />
              </div>
              </div>
               <h5 className="center">Current</h5>
@@ -31,7 +22,7 @@ const LandingPage = () => (
         <div className="col s12 m4">
           <div className="icon-block">
             <div className="icon-pics">
-            <img className="responsive-img" height="200px" img src="assets/img/bills.jpg" />
+            <img className="responsive-img" height="200px" src="assets/img/bills.jpg" />
             </div>
               <h5 className="center">Bills</h5>
 
@@ -42,7 +33,7 @@ const LandingPage = () => (
         <div className="col s12 m4">
           <div className="icon-block">
           <div className="icon-pics">
-          <img className="responsive-img" height="200px"img src="assets/img/goals.jpg" />
+          <img className="responsive-img" height="200px" src="assets/img/goals.jpg" />
           </div>
             <h5 className="center">Grow</h5>
 
@@ -59,8 +50,8 @@ const LandingPage = () => (
     <div className="section-3">
     <div className="row">
     <div className="col s12 m6 l3">
-      <div className="card small blue lighten-5">
-       <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
+      <div className="LPcard card small blue lighten-5">
+       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
         </div>
@@ -70,8 +61,8 @@ const LandingPage = () => (
       </div>
     </div>
     <div className="col s12 m6 l3">
-      <div className="card small blue lighten-5">
-       <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
+      <div className="LPcard card small blue lighten-5">
+       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
         </div>
@@ -82,8 +73,8 @@ const LandingPage = () => (
     </div>
 
      <div className="col s12 m6 l3">
-      <div className="card small blue lighten-5">
-       <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
+      <div className="LPcard card small blue lighten-5">
+       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
         </div>
@@ -94,8 +85,8 @@ const LandingPage = () => (
     </div>
 
     <div className="col s12 m6 l3">
-      <div className="card small blue lighten-5">
-       <div className="card-image" img class="responsve-img" src=".img/logo.png" />  
+      <div className="LPcard card small blue lighten-5">
+       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
          <div className="card-title">
            <h1>widget</h1>
         </div>
@@ -108,15 +99,6 @@ const LandingPage = () => (
   </div>
   </div>
   </div>
-
- 
- 
-    
- 
-
-
-
-
     
     
 );
