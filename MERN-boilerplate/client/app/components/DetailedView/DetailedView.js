@@ -328,10 +328,7 @@ class DetailedView extends React.Component {
 
 	render(){
     //table logic
-    let table = (<div>Add some dough!</div>);
-    let chart1; 
-    if (this.state.userData.length > 0){
-      table = (
+    let table = (
         <div>
            <table>
             <thead>
@@ -362,15 +359,6 @@ class DetailedView extends React.Component {
           </table>
         </div>
       )
-
-      chart1 = (
-        <Chart1 
-            doughTotal={this.state.doughTotal}
-            billTotal={this.state.billTotal}
-            goalTotal={this.state.goalTotal}
-        />
-      )
-    }
 
     //main detailed return
 		return (
@@ -404,7 +392,11 @@ class DetailedView extends React.Component {
               goalData={this.state.goalTotal}
             />
             <h5>Progress</h5>
-            {chart1}
+             <Chart1 
+              doughData={currency.format(this.state.doughTotal, "USD")}
+              billData={currency.format(this.state.billTotal, "USD")}
+              goalData={this.state.goalTotal}
+            />
             
             <Chart2 />
             <Chart4 />

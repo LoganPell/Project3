@@ -1,5 +1,6 @@
 import React from "react";
 import {Bar} from 'react-chartjs-2';
+import currency from 'currency-formatter';
 
 class Chart1 extends React.Component {
   constructor(props) {
@@ -7,16 +8,24 @@ class Chart1 extends React.Component {
   }
   
   render(){
-    const data = {
-      labels: ['Status', 'Goal'],
+    let status = this.props.doughData - this.props.billData;
+    let goals = this.props.goalData;
+    console.log("STATUS",status);
+    console.log("GOALS",goals)
+    let data = {
+      labels: ['', ''],
       datasets: [
         {
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: [
+            '#36A2EB',
+            '#FFCE56'
+            ],
           borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-          hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [(this.props.doughData - this.props.billData), this.props.goalData]
+          hoverBackgroundColor: [
+            '#36A2EB',
+            '#FFCE56'
+            ],
+          data: [status, goals]
         }
       ],
     };
@@ -37,7 +46,7 @@ class Chart1 extends React.Component {
                       beginAtZero:true
                   },
                   gridLines: {
-                    display:false
+                    display:true
                   }   
               }],
               xAxes: [{
@@ -51,6 +60,18 @@ class Chart1 extends React.Component {
             },
           }}
         />
+        <div>
+          <div className="row">
+            <div className="col s6 center-align">
+              <div className="overviewText">Extra Income</div>
+              <div className="overviewTextS">{currency.format(status, "USD")}</div>
+            </div>
+            <div className="col s6 center-align">
+              <div className="overviewText">Goals</div>
+              <div className="overviewTextS">{currency.format(goals, "USD")}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
