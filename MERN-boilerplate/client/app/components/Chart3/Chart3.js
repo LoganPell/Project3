@@ -40,8 +40,10 @@ class Chart3 extends React.Component {
      				<ul className="center-align">
      					<li className="overviewText">Total Dough</li>
      					<li className="overviewTextS">${currency.format(this.props.doughData, "USD")}</li>
+     					<br/>
      					<li className="overviewText">Total Bills</li>
      					<li className="overviewTextS">${currency.format(this.props.billData, "USD")}</li>
+     					<br/>
      					<li className="overviewText">Total Goals</li>
      					<li className="overviewTextS">${currency.format(this.props.goalData, "USD")}</li>
      				</ul>
