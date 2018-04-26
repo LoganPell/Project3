@@ -30,7 +30,7 @@ const LandingPage = () => (
           </div>
         </div>
 
-        <div className="col s12 m4">
+        <div className="col s12 m4 ">
           <div className="icon-block">
           <div className="icon-pics">
           <img className="responsive-img" height="200px" src="assets/img/goals.jpg" />
@@ -49,52 +49,63 @@ const LandingPage = () => (
   <div className="section">
     <div className="section-3">
     <div className="row">
-    <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
-       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
-         <div className="card-title">
-           <h1>widget</h1>
-        </div>
-        <div className="card-content">
-           <p>fjadflkadjsflk;ajdsfklasdjflkasdfaklsdfj</p>
-        </div>
-      </div>
-    </div>
-    <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
-       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
-         <div className="card-title">
-           <h1>widget</h1>
-        </div>
-        <div className="card-content">
-           <p>fjadflkadjsflk;ajdsfklasdjflkasdfaklsdfj</p>
-        </div>
-      </div>
-    </div>
+        <div className="col s12 m6 l3" >
+         <div className="icon-block">
+            <div className="icon-pics">
+            <div className="pict">
+             <img className="responsive-img" height="200px" src="assets/img/piechart.png" />
+             </div>
+             </div>
+              <h5 className="center">Chart</h5>
 
-     <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
-       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
-         <div className="card-title">
-           <h1>widget</h1>
+            <p className="light"> An easy to read chart will allow you to see where most of your dough is coming from and where most of your bread is going. This will help you organize your funds to meet your goals.</p>
+          </div>
         </div>
-        <div className="card-content">
-           <p>fjadflkadjsflk;ajdsfklasdjflkasdfaklsdfj</p>
-        </div>
-      </div>
-    </div>
 
-    <div className="col s12 m6 l3">
-      <div className="LPcard card small blue lighten-5">
-       <div className="card-image" className="responsve-img" src=".img/logo.png" />  
-         <div className="card-title">
-           <h1>widget</h1>
+        <div className="col s12 m6 l3" >
+         <div className="icon-block">
+            <div className="icon-pics2">
+            <div className="pict-log">
+             <img className="responsive-img" height="225px" src="assets/img/log.png" />
+             </div>
+             </div>
+             <div className="filler-1" />
+              <h5 className="center">Log</h5>
+
+            <p className="light"> This log will help track your activity to keep you on target. It will illustrate how the quantity of your money varies over a long span of time. It will remind you of when bills are due and how much you have saved for your goals</p>
+          </div>
         </div>
-        <div className="card-content">
-           <p>fjadflkadjsflk;ajdsfklasdjflkasdfaklsdfj</p>
+        
+        <div className="col s12 m6 l3" >
+         <div className="icon-block">
+            <div className="icon-pics">
+            <div className="pict">
+             <img className="responsive-img" height="200px" src="assets/img/bargraph.png" />
+             </div>
+             </div>
+             <div className="filler-2" />
+              <h5 className="center">Graph</h5>
+
+            <p className="light"> A lot of us are visual learners and graphs make is easy to visually communicate information about your money. With visual starting and stopping points, it’s super easy to see financial areas that you can improve.</p>
+          </div>
         </div>
-      </div>
-    </div>
+
+           <div className="col s12 m6 l3" >
+         <div className="icon-block">
+            <div className="icon-pics">
+            <div className="pict center">
+             <img className="responsive-img"  src="assets/img/hints.png" height="245" width="245" />
+             </div>
+             </div>
+              <h5 className="center">Tips</h5>
+
+            <p className="light">Do you need a little inspiration or looking for a good idea our Dought Tips are there to help. </p>
+          </div>
+        </div>
+
+
+
+
    </div>
   </div>
   </div>

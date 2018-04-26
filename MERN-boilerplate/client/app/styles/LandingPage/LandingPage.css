@@ -4,16 +4,12 @@ p {
   body {
       background:linear-gradient(to right,#009688,#00BCD4) ;
     }
-/*   
-    .log-in{
-    border-radius: 25px;
-    height: 250px;
-    background:white;
-} */
+
 .container{
   margin-left:auto;
   margin-right:auto;
 }
+
 .icon-block{
   margin-right:auto;
   margin-left:auto;
@@ -21,46 +17,43 @@ p {
   border-radius:25px;
   padding:5px;
   background-color:white;
-  border: 2px solid rgb(82, 78, 85);
+
 }
+.tip{
+  width:75%;
+  height: 100px;
+
+}
+
 .responsive-img{
-  border-radius: 25px;
+  padding:2px;
+  border-radius: 10px;
   margin-left:auto;
   margin-right:auto;
 
 }
+  .filler-1{
+    width: 100%;
+    height: 51px;
+  }
+  .filler-2{
+    width:100%;
+    height: 40px;
+  }
+tip{
+  width:100%;
+  height: 100%;
+}
 
- 
-
-  .LPcard{
-    text-align: center;
-    width:auto;
-    height: 150px;
-   
-  }
-  
-  .card-pic{
-    background-color:blue;
-    text-align: center;
-    width: 200px;
-    height: 200px;
-  }
-  .card-content{
-    padding:5px;
-  
-  }
-  .LPcard{
-    width:25%px;
-    border-radius: 25px;
-  }
 
   .section-3{
+      padding-top:25px;
       margin-left:auto;
       margin-right:auto;
       border-radius: 25px;
       width:98%;
-      height:400px;
-      background-color:white;
+      height:500px;
+      background-color:rgb(194, 225, 253);
 
   }
   
@@ -76,16 +69,21 @@ p {
         border-radius: 25px;
         width:98%;
         height:700px;
-        background-color:white;
+        background-color:rgb(194, 225, 253);
   
     }
     .responsive-img{
-      border-radius: 25px;
+      border-radius: 10px;
       margin-left:auto;
       margin-right:auto;
     
     }
-  }
+   .icon-block{
+    
+     margin-top:10px;
+     }
+   }
+  
   
   @media only screen and (max-width : 600px) {
     .section-3{
@@ -94,7 +92,7 @@ p {
         border-radius: 25px;
         width:98%;
         height:100%;
-        background-color:white;
+        background-color:rgb(194, 225, 253);
   
     }
   .icon-block{

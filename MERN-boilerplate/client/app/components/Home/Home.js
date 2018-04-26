@@ -253,39 +253,15 @@ class Home extends Component {
       return (
         <div>
          <div className="row">
-          <div className="col s12 m12 l3 ">
-            <div className="logo">
-              <img className="responsive-img" height="300px" src="assets/img/logo.png" />
+          <div className="col s12 m12 l12 ">
+            <div className="center logo">
+              <img className="responsive-image" id="logoIcon" src="/assets/img/logo.svg" />
+              <h4 id="logoTxt">Dough Flow</h4>
             </div>
+          </div>
           </div>
 
-          <div className="col s12 m6 l3 push-l2">
-            {
-              (signInError) ? (
-                <p>{signInError}</p>
-              ) : (null)
-            }
-            <div className="email">
-              <input 
-                type="email" 
-                placeholder="Email" 
-                value={signInEmail} 
-                onChange={this.onTextboxChangeSignInEmail}
-              />
-            </div>
-          </div>
-             <div className="col s12 m6 l3 push-l2">
-              <div className="password">
-                <input 
-                  type="password" 
-                  placeholder="Password" 
-                  value={signInPassword} 
-                  onChange={this.onTextboxChangeSignInPassword}
-                />
-                <a className="red accent-2 waves-effect waves-light btn" onClick={this.onSignIn}>Sign In</a>
-              </div>
-            </div>
-          </div>
+       
             <div className="row">
               <div className="col s12 m12 l4 push-l1">
                 <div className="log-in card">

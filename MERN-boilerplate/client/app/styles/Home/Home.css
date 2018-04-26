@@ -1,4 +1,16 @@
+#logoTxt{
+    font-family: 'Archivo Black', sans-serif;
+    color:#fff;
+    font-size: 6rem;
+    margin: 0px;
+    display: inline-block;
+}
 
+#logoIcon{
+    height: 8rem;
+    margin: 2rem 1rem 0;
+    display: inline-block;
+}
 
 .top-bar{
     height: 150px;
@@ -6,9 +18,9 @@
 }
 
 .logo{
-    margin-left:35px;
-    height: 200px;
-    width: 100%;
+    margin:0 0 3rem 2rem;
+    /*height: 20rem;*/
+    /*width: 100%;*/
 }
 
 .email{
