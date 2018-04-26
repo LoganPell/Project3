@@ -12,11 +12,11 @@
 #sidebar {
 	height: 400px;
 	width: 300px;
-	border: 1px solid #222;
 	margin-left: 60px;
 	margin-top: 20px;
 	box-shadow: 0px 13px 21px -10px rgba(0, 0, 0, 0.3);
 	background-color: white;
+	border-radius: 10px;
 }
 
 #sidebarSelect {
@@ -66,11 +66,11 @@
 #doughTips {
 	height: 245px;
 	width: 300px;
-	border: 1px solid #222;
 	margin-left: 60px;
 	margin-top: 20px;
 	box-shadow: 0px 13px 21px -10px rgba(0, 0, 0, 0.3);
 	background-color: white;
+	border-radius: 10px;
 }
 
 #doughTipContainer {
@@ -79,6 +79,7 @@
 }
 
 #tipText {
+	padding-top: 10px;
 	margin: 15px auto;
 	height: 130px;
 	font-size: 24px;
@@ -89,12 +90,22 @@
 	color: #222;
 	max-width: 900px;
 	min-width: 600px;
-	border: 1px solid #222;
 	display: inline-block;
 	margin: 20px 50px;
 	overflow: none;
 	flex: 1;
 	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0px 13px 21px -10px rgba(0, 0, 0, 0.3);
+}
+
+#mainContainer {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.settingsMarg {
+	margin: 15px 0px;
 }
 
 /*Overview*/ 

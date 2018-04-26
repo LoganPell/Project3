@@ -22,7 +22,7 @@ class FormSettings extends React.Component {
 	render(){
 		return (
 			<div>
-					<div className="center-align">Add a New Dough Source or Bill Type</div>
+					<div className="center-align settingsMarg">Add a New Dough Source or Bill Type</div>
 		    	<div className="input-field">
 				    <select className="formSettingType">
 				      <option value="" disabled>Select an Option</option>
