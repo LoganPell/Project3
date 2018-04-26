@@ -387,7 +387,7 @@ class DetailedView extends React.Component {
   						</div>
   						<div id="sideForm">
   							<SideBar activeIndex={this.state.active} doughVals={this.state.doughVals} billVals={this.state.billVals}/>
-                <button onClick={this.postForm} className="btn waves-effect waves-light sideSubmit">{this.state.buttonText}</button>
+                <button onClick={this.postForm} className="btn waves-effect waves-light cyan sideSubmit">{this.state.buttonText}</button>
                 <div id="formMessage11" className="helper-text center-align hide"></div>
   						</div>
           </div>
@@ -396,35 +396,42 @@ class DetailedView extends React.Component {
               </div>
   				</div>
   
-					<div id="main" className="">
+					<div id="main" >
+            <div id="mainContainer">
             <h5>Overview</h5>
+            <hr/>
             <Chart3 
               doughData={this.state.doughTotal}
               billData={this.state.billTotal}
               goalData={this.state.goalTotal}
             />
             <h5>Progress</h5>
+            <hr/>
              <Chart1 
               doughData={this.state.doughTotal}
               billData={this.state.billTotal}
               goalData={this.state.goalTotal}
             />
             <h5>Dough Sources</h5>
+            <hr/>
             <Chart2 
               labelArray={this.state.doughSources}
               dataArray={this.state.doughData}
             />
             <h5>Bill Breakdown</h5>
+              <hr/>
             <Chart4 
               labelArray={this.state.billSources}
               dataArray={this.state.billData}
             />
             <h5>Transactions</h5>
+            <hr/>
             <div id="transactions">
               {table}
             </div>
 					</div>
 		  </div>
+    </div>
 	)};
 }
 export default DetailedView;

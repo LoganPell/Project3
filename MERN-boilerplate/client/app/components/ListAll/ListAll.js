@@ -8,7 +8,7 @@ const ListAll = (props) => {
 	      <td>{props.desc}</td>
 	      <td>{"$"+props.amount}</td>
 	    	<td> 
-      		 <a onClick={props.deleteClick} className="waves-effect waves-light btn-small"><i className="material-icons">delete_forever</i></a>
+      		 <a onClick={props.deleteClick} className="waves-effect waves-light red accent-2 btn-small"><i className="material-icons">delete_forever</i></a>
       	</td>
       </tr>
 
