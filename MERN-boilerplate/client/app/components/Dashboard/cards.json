@@ -16,5 +16,23 @@
 		"name": "Goals",
 		"image": "/assets/img/goals.jpg", 
 		"icon": "/assets/img/goals.svg"
+	},
+	{
+		"id": 3,
+		"name": "Phase 2",
+		"image": "/assets/img/feature.jpg", 
+		"icon": "/assets/img/question.svg"
+	},
+	{
+		"id": 4,
+		"name": "Phase 2",
+		"image": "/assets/img/feature.jpg", 
+		"icon": "/assets/img/question.svg"
+	},
+	{
+		"id": 5,
+		"name": "Phase 2",
+		"image": "/assets/img/feature.jpg", 
+		"icon": "/assets/img/question.svg"
 	}
 ]

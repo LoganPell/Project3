@@ -15,16 +15,20 @@ class DashCard extends React.Component {
 			return(
 				<p>Next bill due on: {this.props.userBill}</p>
 			);
-		} else {
+		} else if(id===2){
 			return(
-				<p>Coming Soon!</p>
+				<p>Set a Goal {this.props.userBill}</p>
+			);
+		}else {
+			return(
+				<p>New Features</p>
 			);
 		}
 	}
 
 	render(){
 		return(
-			<div id="card{props.id}" className="col s10 m4 l4 offset-s1">
+			<div id="card{props.id}" className="col s10 m4 l4 offset-s1 dashCards">
 				<div className="card">
 					<div className="card-image">
 						<img className="imgs" src={this.props.image}/>
